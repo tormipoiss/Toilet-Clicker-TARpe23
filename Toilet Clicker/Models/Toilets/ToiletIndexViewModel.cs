@@ -8,7 +8,8 @@ namespace Toilet_Clicker.Models.Toilets
 		public string ToiletName { get; set; }
 		public BigInteger Power { get; set; }
 		public BigInteger Speed { get; set; }
-		public DateTime ToiletWasCreated { get; set; }
+		public BigInteger Score { get; set; }
+		public DateTime ToiletWasBorn { get; set; }
 
 		//db only
 		public DateTime CreatedAt { get; set; }

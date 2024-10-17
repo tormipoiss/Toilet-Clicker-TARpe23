@@ -12,9 +12,10 @@
 					@* later, once images have been implemented, add image here as well *@
 					<th scope="col">#</th>
 					<th scope="col">ToiletName</th>
+					<th scope="col">Score</th>
 					<th scope="col">Power</th>
 					<th scope="col">Speed</th>
-					<th scope="col">Created at</th>
+					<th scope="col">Toilet was born at</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,9 +25,10 @@
 					@* later, once images have been implemented, add image here as well *@
 					<td>@rowNumber</td>
 					<td>@toilet.ToiletName</td>
+					<td>@toilet.Score</td>
 					<td>@toilet.Power</td>
 					<td>@toilet.Speed</td>
-					<td>@toilet.CreatedAt</td>
+					<td>@toilet.ToiletWasBorn</td>
 				</tr>
 				rowNumber++;
 			}
