@@ -1,1 +1,37 @@
-﻿
+﻿@model IEnumerable<Toilet_Clicker.Models.Toilets.ToiletIndexViewModel>
+
+	@{ int rowNumber = 1; }
+	<div><a asp-action="Add" asp-controller="Toilets" type="submit" class="btn btn-primary">Go on a mission for a new toilet</a></div>
+	@* User can go on mission using ADD function, to obtain a new toilet. In controller, this is called "PlayerSoloMission" *@
+
+	<div class="h1">Your Toilets:</div>
+	<form method="post">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					@* later, once images have been implemented, add image here as well *@
+					<th scope="col">#</th>
+					<th scope="col">ToiletName</th>
+					<th scope="col">Power</th>
+					<th scope="col">Speed</th>
+					<th scope="col">Created at</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach (var toilet in Model)
+			{
+				<tr>
+					@* later, once images have been implemented, add image here as well *@
+					<td>@rowNumber</td>
+					<td>@toilet.ToiletName</td>
+					<td>@toilet.Power</td>
+					<td>@toilet.Speed</td>
+					<td>@toilet.CreatedAt</td>
+				</tr>
+				rowNumber++;
+			}
+		</tbody>
+		</table>
+	</form>
+	@* Missing button for player profile *@
+	@* Missing button for player activity history *@
