@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Toilet Clicker.ApplicationServices\Toilet Clicker.ApplicationServices.csproj" />
     <ProjectReference Include="..\Toilet Clicker.Data\Toilet Clicker.Data.csproj" />
   </ItemGroup>
 

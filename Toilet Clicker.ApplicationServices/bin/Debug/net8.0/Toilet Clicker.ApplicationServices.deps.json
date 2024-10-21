@@ -614,6 +614,9 @@
         }
       },
       "Toilet Clicker.Core/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.10"
+        },
         "runtime": {
           "Toilet Clicker.Core.dll": {
             "assemblyVersion": "1.0.0",

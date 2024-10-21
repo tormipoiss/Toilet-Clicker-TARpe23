@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Toilet_Clicker.ApplicationServices.Services;
+using Toilet_Clicker.Core.ServiceInterface;
 using Toilet_Clicker.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ToiletClickerContext>(
 	options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IToiletsServices, ToiletsServices>();
 
 var app = builder.Build();
 

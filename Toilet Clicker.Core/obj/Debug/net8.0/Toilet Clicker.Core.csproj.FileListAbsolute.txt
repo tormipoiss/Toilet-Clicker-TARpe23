@@ -10,3 +10,4 @@ C:\Users\tormi\Desktop\Programmeerimine\absolutefolder\Toilet Clicker.Core\obj\D
 C:\Users\tormi\Desktop\Programmeerimine\absolutefolder\Toilet Clicker.Core\obj\Debug\net8.0\refint\Toilet Clicker.Core.dll
 C:\Users\tormi\Desktop\Programmeerimine\absolutefolder\Toilet Clicker.Core\obj\Debug\net8.0\Toilet Clicker.Core.pdb
 C:\Users\tormi\Desktop\Programmeerimine\absolutefolder\Toilet Clicker.Core\obj\Debug\net8.0\ref\Toilet Clicker.Core.dll
+C:\Users\tormi\Desktop\Programmeerimine\absolutefolder\Toilet Clicker.Core\obj\Debug\net8.0\Toilet Clicker.Core.csproj.AssemblyReference.cache

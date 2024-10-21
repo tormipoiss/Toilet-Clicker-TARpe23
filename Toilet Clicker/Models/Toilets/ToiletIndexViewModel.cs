@@ -6,9 +6,9 @@ namespace Toilet_Clicker.Models.Toilets
 	{
 		public Guid ID { get; set; }
 		public string ToiletName { get; set; }
-		public BigInteger Power { get; set; }
-		public BigInteger Speed { get; set; }
-		public BigInteger Score { get; set; }
+		public ulong Power { get; set; }
+		public ulong Speed { get; set; }
+		public ulong Score { get; set; }
 		public DateTime ToiletWasBorn { get; set; }
 
 		//db only
