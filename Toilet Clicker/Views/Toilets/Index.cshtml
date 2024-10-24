@@ -2,6 +2,7 @@
 
 	@{ int rowNumber = 1; }
 	<div><a asp-action="Add" asp-controller="Toilets" type="submit" class="btn btn-primary">Go on a mission for a new toilet</a></div>
+	<div><a asp-action="Create" asp-controller="Toilets" class="btn btn-primary">Create a new toilet</a></div>
 	@* User can go on mission using ADD function, to obtain a new toilet. In controller, this is called "PlayerSoloMission" *@
 
 	<div class="h1">Your Toilets:</div>
@@ -19,18 +20,27 @@
 				</tr>
 			</thead>
 			<tbody>
-			@foreach (var toilet in Model)
+			@if (Model != null)
+			{
+				@foreach (var toilet in Model)
+				{
+					<tr>
+						@* later, once images have been implemented, add image here as well *@
+						<td>@rowNumber</td>
+						<td>@toilet.ToiletName</td>
+						<td>@toilet.Score</td>
+						<td>@toilet.Power</td>
+						<td>@toilet.Speed</td>
+						<td>@toilet.ToiletWasBorn</td>
+					</tr>
+					rowNumber++;
+				}
+			}
+			else
 			{
 				<tr>
-					@* later, once images have been implemented, add image here as well *@
-					<td>@rowNumber</td>
-					<td>@toilet.ToiletName</td>
-					<td>@toilet.Score</td>
-					<td>@toilet.Power</td>
-					<td>@toilet.Speed</td>
-					<td>@toilet.ToiletWasBorn</td>
+					<td>No toilets found</td>
 				</tr>
-				rowNumber++;
 			}
 		</tbody>
 		</table>
