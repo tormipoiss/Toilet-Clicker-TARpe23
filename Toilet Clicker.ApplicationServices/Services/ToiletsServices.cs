@@ -62,5 +62,33 @@ namespace Toilet_Clicker.ApplicationServices.Services
 
             return toilet;
         }
-    }
+
+		public async Task<Toilet> Update(ToiletDto dto)
+		{
+			Toilet toilet = new Toilet();
+
+            // set by service
+            toilet.ID = dto.ID;
+			toilet.Power = dto.Power;
+			toilet.Speed = dto.Speed;
+			toilet.Score = dto.Score;
+			toilet.ToiletWasBorn = dto.ToiletWasBorn;
+
+			//set by user
+			toilet.ToiletName = dto.ToiletName;
+
+			//set for db
+			toilet.CreatedAt = dto.CreatedAt;
+
+			//files
+			if (dto.Files != null)
+			{
+				_fileServices.UploadFilesToDatabase(dto, toilet);
+			}
+            _context.Toilets.Update(toilet);
+            await _context.SaveChangesAsync();
+
+            return toilet;
+		}
+	}
 }

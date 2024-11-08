@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Toilet_Clicker.Core.Domain;
 using Toilet_Clicker.Core.Dto;
 using Toilet_Clicker.Core.ServiceInterface;
 using Toilet_Clicker.Data;
 using Toilet_Clicker.Models.Toilets;
+using static System.Formats.Asn1.AsnWriter;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Toilet_Clicker.Controllers
 {
@@ -108,6 +113,66 @@ namespace Toilet_Clicker.Controllers
 			vm.Image.AddRange(images);
 
 			return View(vm);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Update(Guid id)
+		{
+			if (id == null) { return NotFound(); }
+
+			var toilet = await _toiletsServices.DetailsAsync(id);
+
+			if (toilet == null) { return NotFound(); }
+
+			var images = await _context.FilesToDatabase
+				.Where(x => x.ToiletID == id)
+				.Select(y => new ToiletImageViewModel
+				{
+					ToiletID = y.ID,
+					ImageID = y.ID,
+					ImageData = y.ImageData,
+					ImageTitle = y.ImageTitle,
+					Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+				}).ToArrayAsync();
+
+			var vm = new ToiletCreateViewModel();
+			vm.ID = toilet.ID;
+			vm.ToiletName = toilet.ToiletName;
+			vm.Power = toilet.Power;
+			vm.Speed = toilet.Speed;
+			vm.Score = toilet.Score;
+			vm.ToiletWasBorn = toilet.ToiletWasBorn;
+			vm.CreatedAt = toilet.CreatedAt;
+			vm.Image.AddRange(images);
+
+			return View("Update", vm);
+		}
+		[HttpPost]
+		public async Task<IActionResult> Update(ToiletCreateViewModel vm)
+		{
+			var dto = new ToiletDto()
+			{
+				ID = (Guid)vm.ID,
+				ToiletName = vm.ToiletName,
+				Power = 1,
+				Speed = 1,
+				Score = 0,
+				ToiletWasBorn = vm.ToiletWasBorn,
+				CreatedAt = DateTime.Now,
+				Files = vm.Files,
+				Image = vm.Image
+				.Select(x => new FileToDatabaseDto
+				{
+					ID = x.ImageID,
+					ImageData = x.ImageData,
+					ImageTitle = x.ImageTitle,
+					ToiletID = x.ToiletID,
+				}).ToArray()
+			};
+			var result = await _toiletsServices.Update(dto);
+
+			if (result == null) { return RedirectToAction("Index"); }
+			return RedirectToAction("Index", vm);
 		}
 	}
 }
