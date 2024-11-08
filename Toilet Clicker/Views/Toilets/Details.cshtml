@@ -1,0 +1,50 @@
+﻿
+@model Toilet_Clicker.Models.Toilets.ToiletDetailsViewModel
+
+<h1> @Html.DisplayFor(model => model.ToiletName) </h1>
+
+<div>
+	<h4> My lord, thyne toilet, plezzz: </h4>
+	<hr />
+	<dl class="row">
+		<div class="form-group row">
+			<label asp-for="ID" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.ID)
+		</div>
+		<div class="form-group row">
+			<label asp-for="ToiletName" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.ToiletName)
+		</div>
+		<div>
+		<div id="imagediv"></div>
+			@foreach (var image in Model.Image)
+			{
+				<partial name="_Images" model="image" />
+			}
+		</div>
+		<div class="form-group row">
+			<label asp-for="Power" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.Power)
+		</div>
+		<div class="form-group row">
+			<label asp-for="Speed" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.Speed)
+		</div>
+		<div class="form-group row">
+			<label asp-for="Score" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.Score)
+		</div>
+		<div class="form-group row">
+			<label asp-for="ToiletWasBorn" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.ToiletWasBorn)
+		</div>
+
+		@* Display type with image instead 
+		<div class="form-group row">
+			<label asp-for="ToiletWasBorn" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.ToiletWasBorn)
+		</div>*@
+	</dl>
+
+	<a asp-action="Index" asp-controller="toilets" class="btn btn-secondary">Index</a>
+</div>

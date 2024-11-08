@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Toilet_Clicker.Core.Dto;
 using Toilet_Clicker.Core.ServiceInterface;
 using Toilet_Clicker.Data;
@@ -45,7 +46,8 @@ namespace Toilet_Clicker.Controllers
 			return View("Create", vm);
 		}
 
-		[HttpPost]
+		[HttpPost, ActionName("Create")]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(ToiletCreateViewModel vm)
 		{
 			var dto = new ToiletDto()
@@ -68,10 +70,44 @@ namespace Toilet_Clicker.Controllers
 			};
 			var result = await _toiletsServices.Create(dto);
 
-			if (result != null)
+			if (result == null)
 			{
 				return RedirectToAction("Index");
 			}
+
+			return RedirectToAction("Index", vm);
+		}
+		[HttpGet]
+		public async Task<IActionResult> Details(Guid id /*, Guid ref*/)
+		{
+			var toilet = await _toiletsServices.DetailsAsync(id);
+
+			if (toilet == null)
+			{
+				return NotFound(); // <- TODO; custom partial view with message, toilet is not located
+			}
+
+			var images = await _context.FilesToDatabase
+				.Where(t => t.ToiletID == id)
+				.Select(y => new ToiletImageViewModel
+				{
+					ToiletID = y.ID,
+					ImageID = y.ID,
+					ImageData = y.ImageData,
+					ImageTitle = y.ImageTitle,
+					Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+				}).ToArrayAsync();
+
+			var vm = new ToiletDetailsViewModel();
+			vm.ID = toilet.ID;
+			vm.ToiletName = toilet.ToiletName;
+			vm.Power = toilet.Power;
+			vm.Speed = toilet.Speed;
+			vm.Score = toilet.Score;
+			vm.ToiletWasBorn = toilet.ToiletWasBorn;
+			vm.Image.AddRange(images);
+
+			return View(vm);
 		}
 	}
 }
