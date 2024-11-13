@@ -35,6 +35,8 @@
 						<td>@toilet.ToiletWasBorn</td>
 						<td>
 							<a asp-action="details" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletDetails</a>
+							<br />
+							<a asp-action="update" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletConfigure</a>
 						</td>
 					</tr>
 					rowNumber++;

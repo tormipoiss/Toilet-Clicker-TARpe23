@@ -1,7 +1,7 @@
 ﻿@model Toilet_Clicker.Models.Toilets.ToiletCreateViewModel
 
 <div>
-	<form method="post" asp-action="Create" actiontype="multipart/form-data">
+	<form method="post" asp-action="Update" actiontype="multipart/form-data">
 
 		<div class="form-group-row">
 			<label asp-for="ToiletName" class="col-sm-2 col-form-label"></label>
@@ -15,17 +15,16 @@
 			<div class="col-sm-5">
 				<div class="custom-file">
 					<input class="form-control custom-file-input"
-					asp-for="Files"
-					multiple type="file"
-				/>
-				<label class="custom-file-label">Choose Images from device -></label>
+						   asp-for="Files"
+						   multiple type="file" />
+					<label class="custom-file-label">Choose Images from device -></label>
 				</div>
 			</div>
 
 		</div>
 
-		<input asp-action="Create" asp-controller="Toilets" type="submit" 
-		class="btn btn-primary" value="Make a toilet"/>
+		<input asp-action="Update" asp-controller="Toilets" type="submit"
+			   class="btn btn-primary" value="Change this toilet" />
 		<a asp-action="index" class="btn btn-primary">Cancel</a>
 
 	</form>
