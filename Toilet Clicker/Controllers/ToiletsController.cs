@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Toilet_Clicker.ApplicationServices.Services;
 using Toilet_Clicker.Core.Domain;
 using Toilet_Clicker.Core.Dto;
 using Toilet_Clicker.Core.ServiceInterface;
@@ -20,11 +21,13 @@ namespace Toilet_Clicker.Controllers
 
 		private readonly ToiletClickerContext _context;
 		private readonly IToiletsServices _toiletsServices;
+		private readonly IFileServices _fileServices;
 
-        public ToiletsController(ToiletClickerContext context, IToiletsServices toiletsServices)
+        public ToiletsController(ToiletClickerContext context, IToiletsServices toiletsServices, IFileServices fileServices)
         {
             _context = context;
 			_toiletsServices = toiletsServices;
+			_fileServices = fileServices;
         }
 
 		[HttpGet]
@@ -41,7 +44,7 @@ namespace Toilet_Clicker.Controllers
 					Speed = x.Speed,
 					CreatedAt = x.ToiletWasBorn,
 				});
-			return View();
+			return View(resultingInventory);
 		}
 
 		[HttpGet]
@@ -173,6 +176,60 @@ namespace Toilet_Clicker.Controllers
 
 			if (result == null) { return RedirectToAction("Index"); }
 			return RedirectToAction("Index", vm);
+		}
+		[HttpGet]
+		public async Task<IActionResult> Delete(Guid id)
+		{
+			if (id == null) { return NotFound(); }
+
+			var toilet = await _toiletsServices.DetailsAsync(id);
+
+			if (toilet == null) { return NotFound(); };
+
+			var images = await _context.FilesToDatabase
+				.Where(x => x.ToiletID == id)
+				.Select(y => new ToiletImageViewModel
+				{
+					ToiletID = y.ID,
+					ImageID = y.ID,
+					ImageData = y.ImageData,
+					ImageTitle = y.ImageTitle,
+					Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+				}).ToArrayAsync();
+			var vm = new ToiletDeleteViewModel();
+
+			vm.ID = toilet.ID;
+			vm.ToiletName = toilet.ToiletName;
+			vm.Power = toilet.Power;
+			vm.Speed = toilet.Speed;
+			vm.Score = toilet.Score;
+			vm.ToiletWasBorn = toilet.ToiletWasBorn;
+			vm.CreatedAt = toilet.CreatedAt;
+			vm.Image.AddRange(images);
+
+			return View(vm);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> DeleteConfirmation(Guid id)
+		{
+			var toiletToDelete = await _toiletsServices.Delete(id);
+
+			if (toiletToDelete == null) { return RedirectToAction("Index"); }
+
+			return RedirectToAction("Index");
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> RemoveImage(ToiletImageViewModel vm)
+		{
+			var dto = new FileToDatabaseDto()
+			{
+				ID = vm.ImageID
+			};
+			var image = await _fileServices.RemoveImageFromDatabase(dto);
+			if (image == null) { return RedirectToAction("Index"); }
+			return RedirectToAction("Index");
 		}
 	}
 }

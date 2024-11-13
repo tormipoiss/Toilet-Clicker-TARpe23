@@ -21,8 +21,8 @@
 				</tr>
 			</thead>
 			<tbody>
-			@if (Model != null)
-			{
+@* 			@if (Model.Any())
+			{ *@
 				@foreach (var toilet in Model)
 				{
 					<tr>
@@ -37,17 +37,19 @@
 							<a asp-action="details" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletDetails</a>
 							<br />
 							<a asp-action="update" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletConfigure</a>
+							<br />
+							<a asp-action="delete" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletDelete</a>
 						</td>
 					</tr>
 					rowNumber++;
 				}
-			}
+			@* }
 			else
 			{
 				<tr>
 					<td>No toilets found</td>
 				</tr>
-			}
+			} *@
 		</tbody>
 		</table>
 	</form>

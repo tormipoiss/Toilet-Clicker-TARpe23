@@ -1,10 +1,9 @@
-﻿
-@model Toilet_Clicker.Models.Toilets.ToiletDetailsViewModel
+﻿@model Toilet_Clicker.Models.Toilets.ToiletDeleteViewModel
 
 <h1> @Html.DisplayFor(model => model.ToiletName) </h1>
 
 <div>
-	<h4> My lord, thyne toilet, plezzz: </h4>
+	<h4> My lord, thyne toilet, plezzz ): DIE : </h4>
 	<hr />
 	<dl class="row">
 		<div class="form-group row">
@@ -15,7 +14,8 @@
 			<label asp-for="ToiletName" class="col-sm-2 col-form-label"></label>
 			@Html.DisplayFor(model => model.ToiletName)
 		</div>
-		<div id="imagediv">
+		<div>
+			<div id="imagediv"></div>
 			@foreach (var image in Model.Image)
 			{
 				<partial name="_Images" model="image" />
@@ -38,12 +38,12 @@
 			@Html.DisplayFor(model => model.ToiletWasBorn)
 		</div>
 
-		@* Display type with image instead 
-		<div class="form-group row">
-			<label asp-for="ToiletWasBorn" class="col-sm-2 col-form-label"></label>
-			@Html.DisplayFor(model => model.ToiletWasBorn)
-		</div>*@
 	</dl>
+	<form asp-action="DeleteConfirmation">
+		<input type="hidden" asp-for="ID" />
+		<input type="submit" value="Delete" class="btn btn-danger" />
+		<a asp-action="Index" asp-controller="toilets" class="btn btn-secondary">Index</a>
+	</form>
 
-	<a asp-action="Index" asp-controller="toilets" class="btn btn-secondary">Index</a>
+	
 </div>

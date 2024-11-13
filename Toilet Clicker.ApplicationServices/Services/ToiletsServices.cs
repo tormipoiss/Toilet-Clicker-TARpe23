@@ -90,5 +90,15 @@ namespace Toilet_Clicker.ApplicationServices.Services
 
             return toilet;
 		}
+
+        public async Task<Toilet> Delete(Guid id)
+        {
+            var result = await _context.Toilets
+                .FirstOrDefaultAsync(x => x.ID == id);
+            _context.Toilets.Remove(result);
+            await _context.SaveChangesAsync();
+
+            return result;
+        }
 	}
 }

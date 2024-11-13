@@ -13,5 +13,6 @@ namespace Toilet_Clicker.Core.ServiceInterface
 		Task<Toilet> DetailsAsync(Guid id);
 		Task<Toilet> Create(ToiletDto dto);
 		Task<Toilet> Update(ToiletDto dto);
+		Task<Toilet> Delete(Guid id);
 	}
 }

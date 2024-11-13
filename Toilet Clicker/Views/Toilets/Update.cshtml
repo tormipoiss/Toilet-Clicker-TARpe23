@@ -22,6 +22,13 @@
 			</div>
 
 		</div>
+		<div>
+			@foreach(var image in Model.Image)
+			{
+				<partial name="_Images" model="image"></partial>
+				<input asp-action="removeImage" asp-controller="toilets" asp-route-id="@image.ImageID" type="submit" class="btn btn-danger" value="DELETE DIS!"/>
+			}
+		</div>
 
 		<input asp-action="Update" asp-controller="Toilets" type="submit"
 			   class="btn btn-primary" value="Change this toilet" />
