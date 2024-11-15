@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Toilet_Clicker.Models.Toilets.ToiletIndexViewModel>
 
 	@{ int rowNumber = 1; }
-	<div><a asp-action="Add" asp-controller="Toilets" type="submit" class="btn btn-primary">Go on a mission for a new toilet</a></div>
-	<div><a asp-action="Create" asp-controller="Toilets" class="btn btn-primary">Create a new toilet</a></div>
+	<div>
+		<a asp-action="Add" asp-controller="Toilets" type="submit" class="btn btn-primary">Go on a mission for a new toilet</a>
+		<a asp-action="Create" asp-controller="Toilets" class="btn btn-primary">Create a new toilet</a>
+	</div>
 	@* User can go on mission using ADD function, to obtain a new toilet. In controller, this is called "PlayerSoloMission" *@
 
 	<div class="h1">Your Toilets:</div>
@@ -21,35 +23,26 @@
 				</tr>
 			</thead>
 			<tbody>
-@* 			@if (Model.Any())
-			{ *@
-				@foreach (var toilet in Model)
-				{
-					<tr>
-						@* later, once images have been implemented, add image here as well *@
-						<td>@rowNumber</td>
-						<td>@toilet.ToiletName</td>
-						<td>@toilet.Score</td>
-						<td>@toilet.Power</td>
-						<td>@toilet.Speed</td>
-						<td>@toilet.ToiletWasBorn</td>
-						<td>
-							<a asp-action="details" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletDetails</a>
-							<br />
-							<a asp-action="update" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletConfigure</a>
-							<br />
-							<a asp-action="delete" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletDelete</a>
-						</td>
-					</tr>
-					rowNumber++;
-				}
-			@* }
-			else
+			@foreach (var toilet in Model)
 			{
 				<tr>
-					<td>No toilets found</td>
+					@* later, once images have been implemented, add image here as well *@
+					<td>@rowNumber</td>
+					<td>@toilet.ToiletName</td>
+					<td>@toilet.Score</td>
+					<td>@toilet.Power</td>
+					<td>@toilet.Speed</td>
+					<td>@toilet.ToiletWasBorn</td>
+					<td>
+						<a asp-action="details" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletDetails</a>
+						<br />
+						<a asp-action="update" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletConfigure</a>
+						<br />
+						<a asp-action="delete" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletDelete</a>
+					</td>
 				</tr>
-			} *@
+				rowNumber++;
+			}
 		</tbody>
 		</table>
 	</form>

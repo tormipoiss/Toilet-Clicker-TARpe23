@@ -1,7 +1,7 @@
 ﻿@model Toilet_Clicker.Models.Toilets.ToiletCreateViewModel
 
 <div>
-	<form method="post" asp-action="Create" actiontype="multipart/form-data">
+	<form method="post" asp-action="Create" enctype="multipart/form-data">
 
 		<div class="form-group-row">
 			<label asp-for="ToiletName" class="col-sm-2 col-form-label"></label>
@@ -10,22 +10,23 @@
 			</div>
 		</div>
 
-		<div class="form-select-lg">
+		<div class="form-group-row">
 			<label asp-for="Files" class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-5">
 				<div class="custom-file">
-					<input class="form-control custom-file-input"
-					asp-for="Files"
-					multiple type="file"
-				/>
-				<label class="custom-file-label">Choose Images from device -></label>
+					<input 
+						class="form-control custom-file-input"
+						asp-for="Files"
+						multiple type="file"
+					/>
+					<label class="custom-file-label">Choose Images from device -></label>
 				</div>
 			</div>
 
 		</div>
 
 		<input asp-action="Create" asp-controller="Toilets" type="submit" 
-		class="btn btn-primary" value="Make a toilet"/>
+			class="btn btn-primary" value="Make a toilet"/>
 		<a asp-action="index" class="btn btn-primary">Cancel</a>
 
 	</form>
@@ -34,18 +35,16 @@
 @section Scripts {
 	<script>
 		$(document).ready(function () {
-			$(".custom-file-input").on("change", function () {
-				var fileLabel = $(this).next(".custom-file-input");
+			$('.custom-file-input').on("change", function () {
+				var fileLabel = $(this).next('.custom-file-input');
 				var files = $(this)[0].files;
-				if (files.Length > 1) {
-					fileLabel.html(files.Length + " files selected");
+				if (files.length > 1) {
+					fileLabel.html(files.Length + ' files selected');
 				}
-				else if (files.Length == 1) {
+				else if (files.length == 1) {
 					fileLabel.html(files[0].name);
 				}
-			}
-			);
-		}
-		);
+			});
+		});
 	</script>
 }

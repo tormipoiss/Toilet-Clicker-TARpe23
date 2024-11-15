@@ -29,7 +29,7 @@ namespace Toilet_Clicker.ApplicationServices.Services
 
         public void UploadFilesToDatabase(ToiletDto dto, Toilet domain)
         {
-            if (dto.Files != null & dto.Files.Count > 0)
+            if (dto.Files != null && dto.Files.Count > 0)
             {
                 foreach (var image in dto.Files) 
                 {

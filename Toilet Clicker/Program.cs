@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IFileServices, FileServices>();
 builder.Services.AddScoped<IToiletsServices, ToiletsServices>();
+builder.Services.AddScoped<IFileServices, FileServices>();
 builder.Services.AddDbContext<ToiletClickerContext>(
 	options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

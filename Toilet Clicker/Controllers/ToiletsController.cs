@@ -221,11 +221,11 @@ namespace Toilet_Clicker.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> RemoveImage(ToiletImageViewModel vm)
+		public async Task<IActionResult> RemoveImage(Guid id)
 		{
 			var dto = new FileToDatabaseDto()
 			{
-				ID = vm.ImageID
+				ID = id
 			};
 			var image = await _fileServices.RemoveImageFromDatabase(dto);
 			if (image == null) { return RedirectToAction("Index"); }
