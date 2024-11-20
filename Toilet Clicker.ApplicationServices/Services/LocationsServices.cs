@@ -67,7 +67,7 @@ namespace Toilet_Clicker.ApplicationServices.Services
 			Location location = new Location();
 
 			// set by service
-			location.ID = Guid.NewGuid();
+			location.ID = dto.ID;
 			location.LocationWasMade = DateTime.Now;
 
 			//set by user
