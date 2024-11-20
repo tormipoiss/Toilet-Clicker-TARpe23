@@ -1,0 +1,49 @@
+﻿@using Toilet_Clicker.Core.Domain
+@model IEnumerable<Toilet_Clicker.Models.Locations.LocationIndexViewModel>
+
+	@{ int rowNumber = 1; }
+	<div>
+		<a asp-action="Add" asp-controller="Locations" type="submit" class="btn btn-primary">Go on a mission to discover a new location</a>
+		<a asp-action="Create" asp-controller="Locations" class="btn btn-primary">Create a new location</a>
+	</div>
+	@* User can go on mission using ADD function, to obtain a new location. In controller, this is called "PlayerSoloMission" *@
+
+	<div class="h1">Your Locations:</div>
+	<form method="post">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					@* later, once images have been implemented, add image here as well *@
+					<th scope="col">#</th>
+					<th scope="col">LocationName</th>
+					<th scope="col">LocationType</th>
+					<th scope="col">LocationDescription</th>
+					<th scope="col">Location was made at</th>
+					<th scope="col">Admin actions</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach (var location in Model)
+			{
+				<tr>
+					@* later, once images have been implemented, add image here as well *@
+					<td>@rowNumber</td>
+					<td>@location.LocationName</td>
+					<td>@location.LocationType</td>
+					<td>@location.LocationDescription</td>
+					<td>@location.LocationWasMade</td>
+					<td>
+						<a asp-action="details" asp-controller="locations" asp-route-id="@location.ID" class="btn btn-info">LocationDetails</a>
+						<br />
+						<a asp-action="update" asp-controller="locations" asp-route-id="@location.ID" class="btn btn-info">LocationConfigure</a>
+						<br />
+						<a asp-action="delete" asp-controller="locations" asp-route-id="@location.ID" class="btn btn-info">LocationDelete</a>
+					</td>
+				</tr>
+				rowNumber++;
+			}
+		</tbody>
+		</table>
+	</form>
+	@* Missing button for player profile *@
+	@* Missing button for player activity history *@

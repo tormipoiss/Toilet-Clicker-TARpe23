@@ -13,6 +13,7 @@ namespace Toilet_Clicker.Data
 	{
         public ToiletClickerContext(DbContextOptions<ToiletClickerContext> options) : base(options) { }
         public DbSet<Toilet> Toilets { get; set; }
+		public DbSet<Location> Locations { get; set; }
 
 		public DbSet<FileToDatabase> FilesToDatabase { get; set; }
 	}

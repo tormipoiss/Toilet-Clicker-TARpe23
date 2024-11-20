@@ -36,12 +36,43 @@ namespace Toilet_Clicker.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("LocationID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("ToiletID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ID");
 
                     b.ToTable("FilesToDatabase");
+                });
+
+            modelBuilder.Entity("Toilet_Clicker.Core.Domain.Location", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LocationDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocationName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocationType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LocationWasMade")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("Toilet_Clicker.Core.Domain.Toilet", b =>

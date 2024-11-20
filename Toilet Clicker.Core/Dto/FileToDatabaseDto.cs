@@ -12,5 +12,6 @@ namespace Toilet_Clicker.Core.Dto
         public string ImageTitle { get; set; }
         public byte[] ImageData { get; set; }
         public Guid? ToiletID { get; set; }
-    }
+		public Guid? LocationID { get; set; }
+	}
 }

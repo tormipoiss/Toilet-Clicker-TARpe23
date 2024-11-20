@@ -1,0 +1,45 @@
+﻿@model Toilet_Clicker.Models.Locations.LocationDeleteViewModel
+
+<h1> @Html.DisplayFor(model => model.LocationName) </h1>
+
+<div>
+	<h4> This location, Unacceptable! : </h4>
+	<hr />
+	<dl class="row">
+		<div class="form-group row">
+			<label asp-for="ID" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.ID)
+		</div>
+		<div class="form-group row">
+			<label asp-for="LocationName" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.LocationName)
+		</div>
+		<div>
+			<div id="imagediv"></div>
+			@foreach (var image in Model.Image)
+			{
+				<partial name="_Images" model="image" />
+			}
+		</div>
+		<div class="form-group row">
+			<label asp-for="LocationType" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.LocationType)
+		</div>
+		<div class="form-group row">
+			<label asp-for="LocationDescription" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.LocationDescription)
+		</div>
+		<div class="form-group row">
+			<label asp-for="LocationWasMade" class="col-sm-2 col-form-label"></label>
+			@Html.DisplayFor(model => model.LocationWasMade)
+		</div>
+
+	</dl>
+	<form asp-action="DeleteConfirmation">
+		<input type="hidden" asp-for="ID" />
+		<input type="submit" value="Delete" class="btn btn-danger" />
+		<a asp-action="Index" asp-controller="locations" class="btn btn-secondary">Index</a>
+	</form>
+
+	
+</div>

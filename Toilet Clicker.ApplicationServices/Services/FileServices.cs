@@ -50,7 +50,30 @@ namespace Toilet_Clicker.ApplicationServices.Services
             }
         }
 
-        public async Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto dto)
+		public void UploadFilesToDatabaseLocation(LocationDto dto, Location domain)
+		{
+			if (dto.Files != null && dto.Files.Count > 0)
+			{
+				foreach (var image in dto.Files)
+				{
+					using (var target = new MemoryStream())
+					{
+						FileToDatabase files = new FileToDatabase()
+						{
+							ID = Guid.NewGuid(),
+							ImageTitle = image.FileName,
+							LocationID = domain.ID
+						};
+
+						image.CopyTo(target);
+						files.ImageData = target.ToArray();
+						_context.FilesToDatabase.Add( files );
+					}
+				}
+			}
+		}
+
+		public async Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto dto)
         {
             var imageID = await _context.FilesToDatabase
                 .FirstOrDefaultAsync(x => x.ID == dto.ID);

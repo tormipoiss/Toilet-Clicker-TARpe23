@@ -42,7 +42,7 @@ namespace Toilet_Clicker.Controllers
 					Score = x.Score,
 					Power = x.Power,
 					Speed = x.Speed,
-					CreatedAt = x.ToiletWasBorn,
+					ToiletWasBorn = x.CreatedAt,
 				});
 			return View(resultingInventory);
 		}

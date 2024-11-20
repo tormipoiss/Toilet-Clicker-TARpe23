@@ -26,7 +26,7 @@
 		</div>
 
 		<input asp-action="Create" asp-controller="Toilets" type="submit" 
-			class="btn btn-primary" value="Make a toilet"/>
+			class="btn btn-primary" value="Make this toilet"/>
 		<a asp-action="index" class="btn btn-primary">Cancel</a>
 
 	</form>
@@ -39,7 +39,7 @@
 				var fileLabel = $(this).next('.custom-file-input');
 				var files = $(this)[0].files;
 				if (files.length > 1) {
-					fileLabel.html(files.Length + ' files selected');
+					fileLabel.html(files.length + ' files selected');
 				}
 				else if (files.length == 1) {
 					fileLabel.html(files[0].name);
