@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Toilet_Clicker.ApplicationServices.Services;
 using Toilet_Clicker.Core.Domain;
@@ -42,6 +43,7 @@ namespace Toilet_Clicker.Controllers
 					Score = x.Score,
 					Power = x.Power,
 					Speed = x.Speed,
+					Location = x.Location,
 					ToiletWasBorn = x.CreatedAt,
 				});
 			return View(resultingInventory);
@@ -51,6 +53,7 @@ namespace Toilet_Clicker.Controllers
 		public IActionResult Create()
 		{
 			ToiletCreateViewModel vm = new();
+			ViewData["LocationID"] = new SelectList(_context.Locations, "ID", "LocationName");
 			return View("Create", vm);
 		}
 
@@ -64,6 +67,7 @@ namespace Toilet_Clicker.Controllers
 				Power = 1,
 				Speed = 1,
 				Score = 0,
+				LocationID = vm.LocationID,
 				ToiletWasBorn = vm.ToiletWasBorn,
 				CreatedAt = DateTime.Now,
 				Files = vm.Files,
@@ -77,6 +81,8 @@ namespace Toilet_Clicker.Controllers
 				}).ToArray()
 			};
 			var result = await _toiletsServices.Create(dto);
+
+			ViewData["LocationID"] = new SelectList(_context.Locations, "ID", "LocationName", vm.LocationID);
 
 			if (result == null)
 			{
@@ -112,6 +118,7 @@ namespace Toilet_Clicker.Controllers
 			vm.Power = toilet.Power;
 			vm.Speed = toilet.Speed;
 			vm.Score = toilet.Score;
+			vm.Location = toilet.Location;
 			vm.ToiletWasBorn = toilet.ToiletWasBorn;
 			vm.Image.AddRange(images);
 
@@ -144,9 +151,12 @@ namespace Toilet_Clicker.Controllers
 			vm.Power = toilet.Power;
 			vm.Speed = toilet.Speed;
 			vm.Score = toilet.Score;
+			vm.LocationID = toilet.LocationID;
 			vm.ToiletWasBorn = toilet.ToiletWasBorn;
 			vm.CreatedAt = toilet.CreatedAt;
 			vm.Image.AddRange(images);
+
+			ViewData["LocationID"] = new SelectList(_context.Locations, "ID", "LocationName", vm.LocationID);
 
 			return View("Update", vm);
 		}
@@ -160,6 +170,7 @@ namespace Toilet_Clicker.Controllers
 				Power = 1,
 				Speed = 1,
 				Score = 0,
+				LocationID = vm.LocationID,
 				ToiletWasBorn = vm.ToiletWasBorn,
 				CreatedAt = DateTime.Now,
 				Files = vm.Files,
@@ -173,6 +184,8 @@ namespace Toilet_Clicker.Controllers
 				}).ToArray()
 			};
 			var result = await _toiletsServices.Update(dto);
+
+			ViewData["LocationID"] = new SelectList(_context.Locations, "ID", "LocationName", vm.LocationID);
 
 			if (result == null) { return RedirectToAction("Index"); }
 			return RedirectToAction("Index", vm);
@@ -203,6 +216,7 @@ namespace Toilet_Clicker.Controllers
 			vm.Power = toilet.Power;
 			vm.Speed = toilet.Speed;
 			vm.Score = toilet.Score;
+			vm.Location = toilet.Location;
 			vm.ToiletWasBorn = toilet.ToiletWasBorn;
 			vm.CreatedAt = toilet.CreatedAt;
 			vm.Image.AddRange(images);

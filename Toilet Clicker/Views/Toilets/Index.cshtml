@@ -19,6 +19,7 @@
 					<th scope="col">Score</th>
 					<th scope="col">Power</th>
 					<th scope="col">Speed</th>
+					<th scope="col">Location</th>
 					<th scope="col">Toilet was born at</th>
 					<th scope="col">Admin actions</th>
 				</tr>
@@ -33,6 +34,14 @@
 					<td>@toilet.Score</td>
 					<td>@toilet.Power</td>
 					<td>@toilet.Speed</td>
+					@if (toilet.Location != null)
+					{
+						<td>@toilet.Location.LocationName</td>
+					}
+					else
+					{
+						<td>No location</td>
+					}
 					<td>@toilet.ToiletWasBorn</td>
 					<td>
 						<a asp-action="details" asp-controller="toilets" asp-route-id="@toilet.ID" class="btn btn-info">ToiletDetails</a>

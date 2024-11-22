@@ -84,6 +84,9 @@ namespace Toilet_Clicker.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("LocationID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("Power")
                         .HasColumnType("decimal(20,0)");
 
@@ -102,7 +105,23 @@ namespace Toilet_Clicker.Data.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("LocationID");
+
                     b.ToTable("Toilets");
+                });
+
+            modelBuilder.Entity("Toilet_Clicker.Core.Domain.Toilet", b =>
+                {
+                    b.HasOne("Toilet_Clicker.Core.Domain.Location", "Location")
+                        .WithMany("Toilets")
+                        .HasForeignKey("LocationID");
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("Toilet_Clicker.Core.Domain.Location", b =>
+                {
+                    b.Navigation("Toilets");
                 });
 #pragma warning restore 612, 618
         }

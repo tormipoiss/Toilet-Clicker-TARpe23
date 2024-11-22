@@ -10,6 +10,14 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+			<label asp-for="LocationID" class="control-label"></label>
+			<select asp-for="LocationID" class="form-control" asp-items="ViewBag.LocationID">
+				<option value="">-- Select Location --</option>
+			</select>
+			<span asp-validation-for="LocationID" class="text-danger"></span>
+		</div>
+
 		<div class="form-group-row">
 			<label asp-for="Files" class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-5">

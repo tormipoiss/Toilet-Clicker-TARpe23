@@ -12,8 +12,8 @@ using Toilet_Clicker.Data;
 namespace Toilet_Clicker.Data.Migrations
 {
     [DbContext(typeof(ToiletClickerContext))]
-    [Migration("20241113115123_test2")]
-    partial class test2
+    [Migration("20241122074246_ijoadsjioadsjio")]
+    partial class ijoadsjioadsjio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,12 +39,43 @@ namespace Toilet_Clicker.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("LocationID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("ToiletID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ID");
 
                     b.ToTable("FilesToDatabase");
+                });
+
+            modelBuilder.Entity("Toilet_Clicker.Core.Domain.Location", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LocationDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocationName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocationType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LocationWasMade")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("Toilet_Clicker.Core.Domain.Toilet", b =>
@@ -55,6 +86,9 @@ namespace Toilet_Clicker.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LocationID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Power")
                         .HasColumnType("decimal(20,0)");
@@ -74,7 +108,23 @@ namespace Toilet_Clicker.Data.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("LocationID");
+
                     b.ToTable("Toilets");
+                });
+
+            modelBuilder.Entity("Toilet_Clicker.Core.Domain.Toilet", b =>
+                {
+                    b.HasOne("Toilet_Clicker.Core.Domain.Location", "Location")
+                        .WithMany("Toilets")
+                        .HasForeignKey("LocationID");
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("Toilet_Clicker.Core.Domain.Location", b =>
+                {
+                    b.Navigation("Toilets");
                 });
 #pragma warning restore 612, 618
         }

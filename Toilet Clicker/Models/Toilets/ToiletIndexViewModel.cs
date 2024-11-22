@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Toilet_Clicker.Core.Domain;
 
 namespace Toilet_Clicker.Models.Toilets
 {
@@ -9,7 +10,8 @@ namespace Toilet_Clicker.Models.Toilets
 		public ulong Power { get; set; }
 		public ulong Speed { get; set; }
 		public ulong Score { get; set; }
-		public DateTime ToiletWasBorn { get; set; }
+        public Location? Location { get; set; }
+        public DateTime ToiletWasBorn { get; set; }
 
 		//db only
 		public DateTime CreatedAt { get; set; }

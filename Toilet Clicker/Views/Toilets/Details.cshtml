@@ -1,5 +1,4 @@
-﻿
-@model Toilet_Clicker.Models.Toilets.ToiletDetailsViewModel
+﻿@model Toilet_Clicker.Models.Toilets.ToiletDetailsViewModel
 
 <h1> @Html.DisplayFor(model => model.ToiletName) </h1>
 
@@ -32,6 +31,17 @@
 		<div class="form-group row">
 			<label asp-for="Score" class="col-sm-2 col-form-label"></label>
 			@Html.DisplayFor(model => model.Score)
+		</div>
+		<div class="form-group row">
+			<label asp-for="Location" class="col-sm-2 col-form-label"></label>
+			@if (Model.Location != null)
+			{
+				@Html.DisplayFor(model => model.Location.LocationName)
+			}
+			else
+			{
+				<span>No location assigned</span>
+			}
 		</div>
 		<div class="form-group row">
 			<label asp-for="ToiletWasBorn" class="col-sm-2 col-form-label"></label>

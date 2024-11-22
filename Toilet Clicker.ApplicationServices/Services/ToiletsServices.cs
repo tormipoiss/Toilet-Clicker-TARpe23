@@ -31,8 +31,10 @@ namespace Toilet_Clicker.ApplicationServices.Services
         {
             var result = await _context.Toilets
                 .FirstOrDefaultAsync(x => x.ID == id);
-            return result;
-        }
+			return await _context.Toilets
+		        .Include(t => t.Location) // Include Location navigation property
+		        .FirstOrDefaultAsync(t => t.ID == id);
+		}
 
         public async Task<Toilet> Create(ToiletDto dto)
         {
@@ -47,6 +49,8 @@ namespace Toilet_Clicker.ApplicationServices.Services
 
             //set by user
             toilet.ToiletName = dto.ToiletName;
+            toilet.LocationID = dto.LocationID;
+            toilet.Location = dto.Location;
 
             //set for db
             toilet.CreatedAt = DateTime.Now;
@@ -76,6 +80,8 @@ namespace Toilet_Clicker.ApplicationServices.Services
 
 			//set by user
 			toilet.ToiletName = dto.ToiletName;
+			toilet.LocationID = dto.LocationID;
+			toilet.Location = dto.Location;
 
 			//set for db
 			toilet.CreatedAt = dto.CreatedAt;
