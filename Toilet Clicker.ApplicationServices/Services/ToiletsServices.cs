@@ -43,8 +43,10 @@ namespace Toilet_Clicker.ApplicationServices.Services
             // set by service
             toilet.ID = Guid.NewGuid();
             toilet.Power = 1;
+            toilet.PowerPrice = 1;
             toilet.Speed = 1;
-            toilet.Score = 0;
+			toilet.SpeedPrice = 1;
+			toilet.Score = 0;
             toilet.ToiletWasBorn = DateTime.Now;
 
             //set by user
@@ -74,7 +76,9 @@ namespace Toilet_Clicker.ApplicationServices.Services
             // set by service
             toilet.ID = dto.ID;
 			toilet.Power = dto.Power;
+            toilet.PowerPrice = dto.PowerPrice;
 			toilet.Speed = dto.Speed;
+            toilet.SpeedPrice= dto.SpeedPrice;
 			toilet.Score = dto.Score;
 			toilet.ToiletWasBorn = dto.ToiletWasBorn;
 

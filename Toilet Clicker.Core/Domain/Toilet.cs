@@ -15,7 +15,9 @@ namespace Toilet_Clicker.Core.Domain
 		public Guid ID { get; set; }
 		public string ToiletName { get; set; }
         public ulong Power { get; set; }
+		public ulong PowerPrice { get; set; }
 		public ulong Speed { get; set; }
+		public ulong SpeedPrice { get; set; }
 		public ulong Score { get; set; }
 		[ForeignKey(nameof(Location.ID))]
         public Guid? LocationID { get; set; }

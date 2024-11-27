@@ -90,10 +90,16 @@ namespace Toilet_Clicker.Data.Migrations
                     b.Property<decimal>("Power")
                         .HasColumnType("decimal(20,0)");
 
+                    b.Property<decimal>("PowerPrice")
+                        .HasColumnType("decimal(20,0)");
+
                     b.Property<decimal>("Score")
                         .HasColumnType("decimal(20,0)");
 
                     b.Property<decimal>("Speed")
+                        .HasColumnType("decimal(20,0)");
+
+                    b.Property<decimal>("SpeedPrice")
                         .HasColumnType("decimal(20,0)");
 
                     b.Property<string>("ToiletName")
