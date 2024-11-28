@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Globalization;
+using System.Text.Json;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -216,7 +217,7 @@ namespace Toilet_Clicker.Controllers
 				TempData["clickDb"] = JsonSerializer.Serialize(new List<List<string>>());
 
 				var clickDb = JsonSerializer.Deserialize<List<List<string>>>(TempData["clickDb"] as string);
-				List<string> temp = new List<string> { toilet.ID.ToString(), DateTime.Now.ToString() };
+				List<string> temp = new List<string> { toilet.ID.ToString(), "0", DateTime.Now.ToString() };
 				clickDb.Add(temp);
 
 				TempData["clickDb"] = JsonSerializer.Serialize(clickDb);
@@ -231,16 +232,16 @@ namespace Toilet_Clicker.Controllers
 					if (temp[0] == toilet.ID.ToString())
 					{
 						foundID = true;
-						if (temp.Count > 3)
+						if (temp.Count > 4)
 						{
-							temp.RemoveAt(1);
+							temp.RemoveAt(2);
 							temp.Add(DateTime.Now.ToString());
 						}
 						else
 						{
 							temp.Add(DateTime.Now.ToString());
 						}
-						for (int j = 1; j < temp.Count; j++)
+						for (int j = 2; j < temp.Count; j++)
 						{
 							TimeSpan dateAge = (DateTime.Parse(temp[j])).TimeOfDay - (DateTime.Parse(temp[temp.Count - 1])).TimeOfDay;
 							double minutes = dateAge.TotalMinutes;
@@ -248,6 +249,25 @@ namespace Toilet_Clicker.Controllers
 							{
 								temp.RemoveAt(j);
 								j--;
+							}
+						}
+						if (temp.Count > 3)
+						{
+							TimeSpan totalSeconds = (DateTime.Parse(temp[temp.Count - 1])).TimeOfDay - (DateTime.Parse(temp[temp.Count - 2])).TimeOfDay;
+							double seconds = Math.Abs(totalSeconds.TotalSeconds);
+							string oldDecimalValue = $"0.{temp[1]}";
+							seconds += double.Parse(oldDecimalValue, CultureInfo.InvariantCulture);
+							if (Int32.TryParse(seconds.ToString(), out int fullSeconds))
+							{
+								temp[1] = "0";
+								toilet.Score += (ulong)fullSeconds * toilet.Speed;
+							}
+							else
+							{
+								List<string> secondsList = new List<string>();
+								secondsList = seconds.ToString().Split('.').ToList();
+								temp[1] = secondsList[1];
+								toilet.Score += Convert.ToUInt64(secondsList[0]) * toilet.Speed;
 							}
 						}
 						clickDb[i] = temp;
@@ -259,7 +279,7 @@ namespace Toilet_Clicker.Controllers
 
 				if (!foundID)
 				{
-					List<string> temp = new List<string>() { toilet.ID.ToString(), DateTime.Now.ToString() };
+					List<string> temp = new List<string>() { toilet.ID.ToString(), "0", DateTime.Now.ToString() };
 					clickDb.Add(temp);
 					TempData["clickDb"] = JsonSerializer.Serialize(clickDb);
 				}
