@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\views\\accounts\\resetpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\views\\accounts\\resetpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\views\\accounts\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\views\\accounts\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\views\\accounts\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\views\\accounts\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\views\\accounts\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -30,24 +34,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 513,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "ResetPasswordConfirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Accounts\\ResetPasswordConfirmation.cshtml",
+              "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Accounts\\ResetPasswordConfirmation.cshtml",
+              "ToolTip": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Accounts\\ResetPasswordConfirmation.cshtml",
+              "RelativeToolTip": "Toilet Clicker\\Views\\Accounts\\ResetPasswordConfirmation.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-29T08:56:40.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Accounts\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Accounts\\ResetPassword.cshtml",
               "ToolTip": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Accounts\\ResetPassword.cshtml",
               "RelativeToolTip": "Toilet Clicker\\Views\\Accounts\\ResetPassword.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-29T08:51:39.544Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Accounts\\Register.cshtml",
               "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Accounts\\Register.cshtml",
@@ -60,20 +77,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "AccountsController.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Controllers\\AccountsController.cs",
               "RelativeDocumentMoniker": "Toilet Clicker\\Controllers\\AccountsController.cs",
               "ToolTip": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Controllers\\AccountsController.cs",
               "RelativeToolTip": "Toilet Clicker\\Controllers\\AccountsController.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAADwv60AAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAwwK0AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-29T07:34:39.906Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Accounts\\Login.cshtml",
               "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Accounts\\Login.cshtml",
@@ -90,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ToiletsController.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Controllers\\ToiletsController.cs",
               "RelativeDocumentMoniker": "Toilet Clicker\\Controllers\\ToiletsController.cs",

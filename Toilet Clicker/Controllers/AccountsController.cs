@@ -166,6 +166,10 @@ namespace Toilet_Clicker.Controllers
 			return RedirectToAction("ResetPasswordConfirmation", "Accounts");
 		}
 
+		[HttpGet]
+		[AllowAnonymous]
+		public IActionResult ResetPasswordConfirmation() { return View(); }
+
 		// User register methods
 		[HttpGet]
 		public IActionResult Register()
