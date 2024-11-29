@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Toilet_Clicker.Data;
 
@@ -11,9 +12,11 @@ using Toilet_Clicker.Data;
 namespace Toilet_Clicker.Data.Migrations
 {
     [DbContext(typeof(ToiletClickerContext))]
-    partial class ToiletClickerContextModelSnapshot : ModelSnapshot
+    [Migration("20241129110811_yeah")]
+    partial class yeah
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
