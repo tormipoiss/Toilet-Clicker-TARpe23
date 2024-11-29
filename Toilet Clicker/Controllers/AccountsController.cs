@@ -116,8 +116,6 @@ namespace Toilet_Clicker.Controllers
 			return View(model);
 		}
 
-		
-
 		// User register methods
 		[HttpGet]
 		public IActionResult Register()
