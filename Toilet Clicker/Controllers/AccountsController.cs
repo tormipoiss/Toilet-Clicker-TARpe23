@@ -14,7 +14,8 @@ namespace Toilet_Clicker.Controllers
 		private readonly ToiletClickerContext _context;
 
 		public AccountsController
-			(UserManager<ApplicationUser> userManager,
+			(
+			UserManager<ApplicationUser> userManager,
 			SignInManager<ApplicationUser> signInManager,
 			ToiletClickerContext context
 			)
