@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Toilet_Clicker.Core.Domain;
+using Toilet_Clicker.Core.Dto.AccountsDtos;
 using Toilet_Clicker.Data;
+using Toilet_Clicker.Models;
 using Toilet_Clicker.Models.Accounts;
 
 namespace Toilet_Clicker.Controllers
@@ -183,11 +186,12 @@ namespace Toilet_Clicker.Controllers
 
 		[HttpPost]
 		[AllowAnonymous]
-		public async Task<IActionResult> Register(RegisterViewModel model)
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public async Task<IActionResult> Register(RegisterViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				var user = new ApplicationUser
+				var user = new ApplicationUser()
 				{
 					UserName = model.Email,
 					Email = model.Email,
@@ -204,16 +208,25 @@ namespace Toilet_Clicker.Controllers
 						return RedirectToAction("ListUsers", "Administrations");
 					}
 
-					ViewBag.ErrorTitle = "You have successfully registered";
-					ViewBag.ErrorMessage = "Before you can login, please confirm email from the link" +
-						"\nwe have emailed to your email address.";
-					return View("Error");
-				}
-				foreach (var error in result.Errors)
-				{
-					ModelState.AddModelError("", error.Description);
-				}
-			}
+                    List<string> errordatas =
+                        [
+                        "Area", "Accounts",
+                        "Issue", "Success",
+                        "StatusMessage", "Registration Success",
+                        "ActedOn", $"{model.Email}",
+                        "CreatedAccountData", $"{model.Email}\n{model.City}\n[password hidden]\n[password hidden]"
+                        ];
+                    ViewBag.ErrorDatas = errordatas;
+                    ViewBag.ErrorTitle = "You have successfully registered";
+                    ViewBag.ErrorMessage = "Before you can log in, please confirm email from the link" +
+                        "\nwe have emailed to your email address.";
+                    return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
 			return View();
 		}
 

@@ -1,10 +1,24 @@
 ﻿@model ErrorViewModel
 @{
+    List<string> errordatas = ViewBag.ErrorDatas;
     ViewData["Title"] = "Error";
 }
 
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
+<table>
+    @if (errordatas.Count != null)
+    {
+        for (int i = 0; i < errordatas.Count(); i += 2)
+        {
+            <tr>
+                <td>@Html.Display(errordatas[i])</td>
+                <td>@Html.Display(errordatas[i + 1])</td>
+            </tr>
+        }
+    }
+</table>
+
 
 @if (Model.ShowRequestId)
 {
