@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Toilet_Clicker.Core.Domain;
+using Toilet_Clicker.Core.Dto;
 using Toilet_Clicker.Core.Dto.AccountsDtos;
 using Toilet_Clicker.Core.ServiceInterface;
 
@@ -15,14 +16,18 @@ namespace Toilet_Clicker.ApplicationServices.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
+        /**/ private readonly IEmailsServices _emailsServices;
+
         public AccountsServices
             (
                 UserManager<ApplicationUser> userManager,
-                SignInManager<ApplicationUser> signInManager
+                SignInManager<ApplicationUser> signInManager,
+                IEmailsServices emailsServices
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailsServices = emailsServices;
         }
 
         public async Task<ApplicationUser> Register(ApplicationUserDto dto)
@@ -37,6 +42,7 @@ namespace Toilet_Clicker.ApplicationServices.Services
             if (result.Succeeded)
             {
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                _emailsServices.SendEmailToken(new EmailTokenDto(), token);
             }
             return user;
         }

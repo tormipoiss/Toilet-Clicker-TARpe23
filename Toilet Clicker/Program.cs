@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IToiletsServices, ToiletsServices>();
 builder.Services.AddScoped<IFileServices, FileServices>();
+builder.Services.AddScoped<IEmailsServices, EmailsServices>();
 builder.Services.AddScoped<IAccountsServices, AccountsServices>();
 builder.Services.AddDbContext<ToiletClickerContext>(
 	options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

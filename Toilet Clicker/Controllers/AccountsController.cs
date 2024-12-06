@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Toilet_Clicker.Core.Domain;
+using Toilet_Clicker.Core.Dto;
+using Toilet_Clicker.Core.ServiceInterface;
 using Toilet_Clicker.Data;
+using Toilet_Clicker.Models;
 using Toilet_Clicker.Models.Accounts;
 
 namespace Toilet_Clicker.Controllers
@@ -12,17 +16,20 @@ namespace Toilet_Clicker.Controllers
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly ToiletClickerContext _context;
+		private readonly IEmailsServices _emailsServices;
 
 		public AccountsController
 			(
 			UserManager<ApplicationUser> userManager,
 			SignInManager<ApplicationUser> signInManager,
-			ToiletClickerContext context
+			ToiletClickerContext context,
+			IEmailsServices emailsServices
 			)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_context = context;
+			_emailsServices = emailsServices;
 		}
 
 		[HttpGet]
@@ -183,11 +190,12 @@ namespace Toilet_Clicker.Controllers
 
 		[HttpPost]
 		[AllowAnonymous]
-		public async Task<IActionResult> Register(RegisterViewModel model)
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public async Task<IActionResult> Register(RegisterViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				var user = new ApplicationUser
+				var user = new ApplicationUser()
 				{
 					UserName = model.Email,
 					Email = model.Email,
@@ -199,16 +207,33 @@ namespace Toilet_Clicker.Controllers
 					var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
 					var confirmationLink = Url.Action("ConfirmEmail", "Accounts", new { userId = user.Id, token = token }, Request.Scheme);
+
+					EmailTokenDto newsignup = new();
+					newsignup.Token = token;
+					newsignup.Body = $"Thank you for signing up, click här: {confirmationLink}";
+					newsignup.Subject = "Toilet Clicker Register";
+					newsignup.To = user.Email;
+
+					_emailsServices.SendEmailToken(newsignup, token);
 					if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 					{
 						return RedirectToAction("ListUsers", "Administrations");
 					}
 
-					ViewBag.ErrorTitle = "You have successfully registered";
-					ViewBag.ErrorMessage = "Before you can login, please confirm email from the link" +
-						"\nwe have emailed to your email address.";
-					return View("Error");
-				}
+                    List<string> errordatas =
+                        [
+                        "Area", "Accounts",
+                        "Issue", "Success",
+                        "StatusMessage", "Registration Success",
+                        "ActedOn", $"{model.Email}",
+                        "CreatedAccountData", $"{model.Email}\n{model.City}\n[password hidden]\n[password hidden]"
+                        ];
+                    ViewBag.ErrorDatas = errordatas;
+                    ViewBag.ErrorTitle = "You have successfully registered";
+                    ViewBag.ErrorMessage = "Before you can log in, please confirm email from the link" +
+                        "\nwe have emailed to your email address.";
+                    return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                }
 				foreach (var error in result.Errors)
 				{
 					ModelState.AddModelError("", error.Description);
