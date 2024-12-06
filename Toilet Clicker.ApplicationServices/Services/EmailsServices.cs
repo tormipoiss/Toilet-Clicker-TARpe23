@@ -11,7 +11,7 @@ using Toilet_Clicker.Core.ServiceInterface;
 
 namespace Toilet_Clicker.ApplicationServices.Services
 {
-    public class EmailsServices : Core.ServiceInterface.IEmailsServices
+    public class EmailsServices : IEmailsServices
     {
         private readonly IConfiguration _configuration;
 
