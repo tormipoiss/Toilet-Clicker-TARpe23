@@ -7,6 +7,7 @@ using Toilet_Clicker.Core.Domain;
 using Toilet_Clicker.Core.Dto;
 using Toilet_Clicker.Core.ServiceInterface;
 using Toilet_Clicker.Data;
+using Toilet_Clicker.Models.Stories;
 using Toilet_Clicker.Models.Toilets;
 using static System.Formats.Asn1.AsnWriter;
 using static System.Net.Mime.MediaTypeNames;
@@ -231,5 +232,53 @@ namespace Toilet_Clicker.Controllers
 			if (image == null) { return RedirectToAction("Index"); }
 			return RedirectToAction("Index");
 		}
-	}
+
+		/*
+	
+			TOILETOWNERSHIP
+
+		 */
+
+		/// <summary>
+		/// player get toilet from story event
+		/// </summary>
+		/// <param name="vm"></param>
+		/// <returns></returns>
+        [HttpPost, ActionName("CreateToiletOwnership")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateRandomToiletOwnership(ToiletOwnershipFromStoryViewModel vm)
+        {
+			int RNG = new Random().Next(1, _context.Toilets.Count());
+
+			var sourceToilet = _context.Toilets.OrderByDescending(x => x.ToiletName).Take(RNG);
+
+            var dto = new ToiletOwnershipDto()
+            {
+                ToiletName = vm.AddedToilet.ToiletName,
+                Power = 1,
+                Speed = 1,
+                Score = 0,
+                ToiletWasBorn = vm.AddedToilet.ToiletWasBorn,
+                OwnershipCreatedAt = DateTime.Now,
+                OwnershipUpdatedAt = DateTime.Now,
+                Files = vm.AddedToilet.Files,
+                Image = vm.AddedToilet.Image
+                //.Select(x => new FileToDatabaseDto
+                //{
+                //    ID = x.ImageID,
+                //    ImageData = x.ImageData,
+                //    ImageTitle = x.ImageTitle,
+                //    ToiletID = x.ToiletID,
+                //}).ToArray()
+            };
+            var result = await _storiesServices.Create(dto);
+
+            if (result == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index", vm);
+        }
+    }
 }
