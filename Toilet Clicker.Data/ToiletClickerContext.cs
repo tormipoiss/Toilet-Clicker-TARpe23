@@ -18,5 +18,6 @@ namespace Toilet_Clicker.Data
 
 		public DbSet<FileToDatabase> FilesToDatabase { get; set; }
 		public DbSet<IdentityRole> IdentityRoles { get; set; }
+		public DbSet<PlayerProfile> PlayerProfiles { get; set; }
 	}
 }

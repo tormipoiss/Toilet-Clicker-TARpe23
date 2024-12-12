@@ -271,8 +271,10 @@ namespace Toilet_Clicker.Controllers
                 //    ToiletID = x.ToiletID,
                 //}).ToArray()
             };
-            var result = await _storiesServices.Create(dto);
+			//var result = await _storiesServices.Create(dto);
+			// STUB, needs storiesservices, a story to utilise, storiescontroller to function
 
+			string result = null;
             if (result == null)
             {
                 return RedirectToAction("Index");
