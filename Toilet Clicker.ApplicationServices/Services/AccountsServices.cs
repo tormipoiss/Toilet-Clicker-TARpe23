@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Toilet_Clicker.Core.Domain;
 using Toilet_Clicker.Core.Dto;
 using Toilet_Clicker.Core.Dto.AccountsDtos;
@@ -15,19 +16,22 @@ namespace Toilet_Clicker.ApplicationServices.Services
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-
-        /**/ private readonly IEmailsServices _emailsServices;
+        private readonly IPlayerProfilesServices _playerProfilesServices;
+        /**/
+        private readonly IEmailsServices _emailsServices;
 
         public AccountsServices
             (
                 UserManager<ApplicationUser> userManager,
                 SignInManager<ApplicationUser> signInManager,
-                IEmailsServices emailsServices
+                IEmailsServices emailsServices,
+                IPlayerProfilesServices playerProfilesServices
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailsServices = emailsServices;
+            _playerProfilesServices = playerProfilesServices;
         }
 
         public async Task<ApplicationUser> Register(ApplicationUserDto dto)
@@ -37,7 +41,7 @@ namespace Toilet_Clicker.ApplicationServices.Services
                 UserName = dto.UserName,
                 Email = dto.Email,
                 City = dto.City,
-                PlayerProfileID = dto.AssociatedPlayerProfile = await _playerprofilesServices.Create()
+                PlayerProfileID = Guid.NewGuid(),
             };
             var result = await _userManager.CreateAsync(user, dto.Password);
             if (result.Succeeded)
@@ -45,6 +49,7 @@ namespace Toilet_Clicker.ApplicationServices.Services
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 _emailsServices.SendEmailToken(new EmailTokenDto(), token);
             }
+            await _playerProfilesServices.Create((string)user.Id);
             return user;
         }
 

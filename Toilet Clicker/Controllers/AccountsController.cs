@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Toilet_Clicker.ApplicationServices.Services;
 using Toilet_Clicker.Core.Domain;
 using Toilet_Clicker.Core.Dto;
 using Toilet_Clicker.Core.ServiceInterface;
@@ -17,19 +18,22 @@ namespace Toilet_Clicker.Controllers
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly ToiletClickerContext _context;
 		private readonly IEmailsServices _emailsServices;
+		private readonly IPlayerProfilesServices _playerProfilesServices;
 
 		public AccountsController
 			(
 			UserManager<ApplicationUser> userManager,
 			SignInManager<ApplicationUser> signInManager,
 			ToiletClickerContext context,
-			IEmailsServices emailsServices
+			IEmailsServices emailsServices,
+            IPlayerProfilesServices playerProfilesServices
 			)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_context = context;
 			_emailsServices = emailsServices;
+			_playerProfilesServices = playerProfilesServices;
 		}
 
 		[HttpGet]
@@ -220,19 +224,24 @@ namespace Toilet_Clicker.Controllers
 						return RedirectToAction("ListUsers", "Administrations");
 					}
 
-                    List<string> errordatas =
-                        [
-                        "Area", "Accounts",
-                        "Issue", "Success",
-                        "StatusMessage", "Registration Success",
-                        "ActedOn", $"{model.Email}",
-                        "CreatedAccountData", $"{model.Email}\n{model.City}\n[password hidden]\n[password hidden]"
-                        ];
-                    ViewBag.ErrorDatas = errordatas;
-                    ViewBag.ErrorTitle = "You have successfully registered";
-                    ViewBag.ErrorMessage = "Before you can log in, please confirm email from the link" +
-                        "\nwe have emailed to your email address.";
-                    return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+					return View("~"); // LÕPETAAAAAAAAAAAAAAAAAAAAAAA
+
+     //               List<string> errordatas =
+     //                   [
+     //                   "Area", "Accounts",
+     //                   "Issue", "Success",
+     //                   "StatusMessage", "Registration Success",
+     //                   "ActedOn", $"{model.Email}",
+     //                   "CreatedAccountData", $"{model.Email}\n{model.City}\n[password hidden]\n[password hidden]"
+     //                   ];
+     //               ViewBag.ErrorDatas = errordatas;
+     //               ViewBag.ErrorTitle = "You have successfully registered";
+     //               ViewBag.ErrorMessage = "Before you can log in, please confirm email from the link" +
+     //                   "\nwe have emailed to your email address.";
+
+					////var newprofileforthisuser = _context
+
+     //               return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
                 }
 				foreach (var error in result.Errors)
 				{

@@ -14,6 +14,7 @@ builder.Services.AddScoped<IToiletsServices, ToiletsServices>();
 builder.Services.AddScoped<IFileServices, FileServices>();
 builder.Services.AddScoped<IEmailsServices, EmailsServices>();
 builder.Services.AddScoped<IAccountsServices, AccountsServices>();
+builder.Services.AddScoped<IPlayerProfilesServices, PlayerProfilesServices>();
 builder.Services.AddDbContext<ToiletClickerContext>(
 	options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>

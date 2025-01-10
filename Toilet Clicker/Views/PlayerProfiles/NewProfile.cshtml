@@ -1,0 +1,30 @@
+﻿@model Toilet_Clicker.Models.Profiles.ProfileRegisterViewModel
+
+<div>
+	<h1> Customize your profile: </h1>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<form method="post">
+			<div asp-validation-summary="All" class="text-danger">
+
+				<input type="hidden" asp-for="ApplicationUserID"/>
+				<input type="hidden" asp-for="MyToilets"/>
+				<input type="hidden" asp-for="CurrentStatus"/>
+				<input type="hidden" asp-for="ProfileType"/>
+
+				<div class="form-group">
+					<label asp-for="ScreenName"></label>
+					<input asp-for="ScreenName" class="form-control"/>
+					<span asp-validation-for="ScreenName" class="text-danger"></span>
+				</div>
+
+				<button type="submit" class="">
+					This is me
+				</button>
+
+			</div>
+		</form>
+	</div>
+</div>
