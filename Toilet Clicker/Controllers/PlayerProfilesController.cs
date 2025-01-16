@@ -25,9 +25,11 @@ namespace Toilet_Clicker.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> NewPlayerProfile(PlayerProfileDto dto)
+        public async Task<IActionResult> NewProfile(PlayerProfileDto dto)
         {
-            if (dto.ApplicationUserID == null)
+            string userid = TempData["NewUserID"].ToString();
+            //if (ViewData["NewUserID"] == null)
+            if (userid == null)
             {
                 return View("Index");
             }
@@ -35,8 +37,8 @@ namespace Toilet_Clicker.Controllers
             var newprofile = new PlayerProfile()
             {
                 ID = dto.ID,
-                ApplicationUserID = dto.ApplicationUserID,
-                ScreenName = "",
+                ApplicationUserID = TempData["NewUserID"].ToString(),
+                ScreenName = dto.ScreenName,
                 MyToilets = new List<ToiletOwnership>(),
                 CurrentStatus = ProfileStatus.Active,
                 ProfileType = false,
@@ -46,13 +48,21 @@ namespace Toilet_Clicker.Controllers
                 ProfileModifiedAt = DateTime.UtcNow,
             };
             var result = await _context.PlayerProfiles.AddAsync(newprofile);
-            if (result != null)
+            await _context.SaveChangesAsync();
+            if (result == null)
             {
                 return View("Index");
             }
 
+            return View("~/Views/Home/Index.cshtml");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> NewPlayerProfile()
+        {
             return View();
         }
+
         //[HttpGet]
         // public async Task<Player>
 

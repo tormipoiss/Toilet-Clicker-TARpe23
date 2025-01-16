@@ -20,8 +20,16 @@
 					<span asp-validation-for="ScreenName" class="text-danger"></span>
 				</div>
 
-				<button type="submit" class="">
-					This is me
+				<button type="submit">
+					<a id="gCbuttonText" viewBox="0 0 200 50"
+						@* asp-controller="PlayerProfiles" asp-action="NewProfile"> *@ >
+						<svg id="indexButton" class="gCbuttonL1">
+							<rect class="svgButtonMainStyle"></rect>
+							<text x="10" y="21" class="svgButtonMainTextStyle">This is me</text>
+							<polygon class="svgButtonMainTriangleStyle" points='0,0 0,13 13,0'></polygon>
+							<polygon class="svgButtonMainTriangleStyle" points='130,30 130,17 117,30'></polygon>
+						</svg>
+					</a>
 				</button>
 
 			</div>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Toilet Clicker.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c013240cb02a43e70ef0961c4cca272fdd829d5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4f1017909ff4c5d2cbc70731386ae72c8642ecc")]
 [assembly: System.Reflection.AssemblyProductAttribute("Toilet Clicker.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Toilet Clicker.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
