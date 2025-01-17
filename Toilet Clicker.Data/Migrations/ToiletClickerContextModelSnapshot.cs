@@ -252,17 +252,12 @@ namespace Toilet_Clicker.Data.Migrations
                     b.ToTable("FilesToDatabase");
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("Toilet_Clicker.Core.Domain.Location", b =>
-=======
-            modelBuilder.Entity("Toilet_Clicker.Core.Domain.PlayerProfile", b =>
->>>>>>> 4-Email
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-<<<<<<< HEAD
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -283,7 +278,14 @@ namespace Toilet_Clicker.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Locations");
-=======
+                });
+
+            modelBuilder.Entity("Toilet_Clicker.Core.Domain.PlayerProfile", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("ApplicationUserID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -313,7 +315,6 @@ namespace Toilet_Clicker.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("PlayerProfiles");
->>>>>>> 4-Email
                 });
 
             modelBuilder.Entity("Toilet_Clicker.Core.Domain.Toilet", b =>
@@ -325,15 +326,13 @@ namespace Toilet_Clicker.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-<<<<<<< HEAD
-                    b.Property<Guid?>("LocationID")
-                        .HasColumnType("uniqueidentifier");
-=======
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasMaxLength(21)
                         .HasColumnType("nvarchar(21)");
->>>>>>> 4-Email
+
+                    b.Property<Guid?>("LocationID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Power")
                         .HasColumnType("decimal(20,0)");
@@ -440,18 +439,6 @@ namespace Toilet_Clicker.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Toilet_Clicker.Core.Domain.ToiletOwnership", b =>
-                {
-                    b.HasOne("Toilet_Clicker.Core.Domain.PlayerProfile", null)
-                        .WithMany("MyToilets")
-                        .HasForeignKey("PlayerProfileID");
-                });
-
-            modelBuilder.Entity("Toilet_Clicker.Core.Domain.PlayerProfile", b =>
-                {
-                    b.Navigation("MyToilets");
-                });
-
             modelBuilder.Entity("Toilet_Clicker.Core.Domain.Toilet", b =>
                 {
                     b.HasOne("Toilet_Clicker.Core.Domain.Location", "Location")
@@ -461,9 +448,21 @@ namespace Toilet_Clicker.Data.Migrations
                     b.Navigation("Location");
                 });
 
+            modelBuilder.Entity("Toilet_Clicker.Core.Domain.ToiletOwnership", b =>
+                {
+                    b.HasOne("Toilet_Clicker.Core.Domain.PlayerProfile", null)
+                        .WithMany("MyToilets")
+                        .HasForeignKey("PlayerProfileID");
+                });
+
             modelBuilder.Entity("Toilet_Clicker.Core.Domain.Location", b =>
                 {
                     b.Navigation("Toilets");
+                });
+
+            modelBuilder.Entity("Toilet_Clicker.Core.Domain.PlayerProfile", b =>
+                {
+                    b.Navigation("MyToilets");
                 });
 #pragma warning restore 612, 618
         }

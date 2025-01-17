@@ -67,35 +67,39 @@ namespace Toilet_Clicker.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(ToiletCreateViewModel vm)
 		{
-			var dto = new ToiletDto()
+			if (ModelState.IsValid)
 			{
-				ToiletName = vm.ToiletName,
-				Power = 1,
-				PowerPrice = 1,
-				Speed = 1,
-				SpeedPrice = 1,
-				Score = 0,
-				LocationID = vm.LocationID,
-				ToiletWasBorn = vm.ToiletWasBorn,
-				CreatedAt = DateTime.Now,
-				Files = vm.Files,
-				Image = vm.Image
-				.Select(x => new FileToDatabaseDto
-				{
-					ID = x.ImageID,
-					ImageData = x.ImageData,
-					ImageTitle = x.ImageTitle,
-					ToiletID = x.ToiletID,
-				}).ToArray()
-			};
-			var result = await _toiletsServices.Create(dto);
+                var dto = new ToiletDto()
+                {
+                    ToiletName = vm.ToiletName,
+                    Power = 1,
+                    PowerPrice = 1,
+                    Speed = 1,
+                    SpeedPrice = 1,
+                    Score = 0,
+                    LocationID = vm.LocationID,
+                    ToiletWasBorn = vm.ToiletWasBorn,
+                    CreatedAt = DateTime.Now,
+                    Files = vm.Files,
+                    Image = vm.Image
+                .Select(x => new FileToDatabaseDto
+                {
+                    ID = x.ImageID,
+                    ImageData = x.ImageData,
+                    ImageTitle = x.ImageTitle,
+                    ToiletID = x.ToiletID,
+                }).ToArray()
+                };
 
-			ViewData["LocationID"] = new SelectList(_context.Locations, "ID", "LocationName", vm.LocationID);
+                var result = await _toiletsServices.Create(dto);
 
-			if (result == null)
-			{
-				return RedirectToAction("Index");
-			}
+                ViewData["LocationID"] = new SelectList(_context.Locations, "ID", "LocationName", vm.LocationID);
+
+                if (result == null)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
 
 			return RedirectToAction("Index", vm);
 		}

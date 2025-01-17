@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Toilet_Clicker.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class yeah : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,6 +31,7 @@ namespace Toilet_Clicker.Data.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlayerProfileID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -58,7 +59,8 @@ namespace Toilet_Clicker.Data.Migrations
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ImageTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    ToiletID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    ToiletID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LocationID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -66,20 +68,38 @@ namespace Toilet_Clicker.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Toilets",
+                name: "Locations",
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ToiletName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Power = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
-                    Speed = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
-                    Score = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
-                    ToiletWasBorn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LocationName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LocationType = table.Column<int>(type: "int", nullable: false),
+                    LocationDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LocationWasMade = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Toilets", x => x.ID);
+                    table.PrimaryKey("PK_Locations", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlayerProfiles",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ApplicationUserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ScreenName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CurrentStatus = table.Column<int>(type: "int", nullable: false),
+                    ProfileType = table.Column<bool>(type: "bit", nullable: false),
+                    ProfileCreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProfileModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProfileAttributedToAnAccountUserAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProfileStatusLastChangedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayerProfiles", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -188,6 +208,41 @@ namespace Toilet_Clicker.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Toilets",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ToiletName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Power = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    PowerPrice = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    Speed = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    SpeedPrice = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    Score = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    LocationID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ToiletWasBorn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
+                    OwnershipID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    OwnershipCreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    OwnershipUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PlayerProfileID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Toilets", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Toilets_Locations_LocationID",
+                        column: x => x.LocationID,
+                        principalTable: "Locations",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Toilets_PlayerProfiles_PlayerProfileID",
+                        column: x => x.PlayerProfileID,
+                        principalTable: "PlayerProfiles",
+                        principalColumn: "ID");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -226,6 +281,16 @@ namespace Toilet_Clicker.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Toilets_LocationID",
+                table: "Toilets",
+                column: "LocationID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Toilets_PlayerProfileID",
+                table: "Toilets",
+                column: "PlayerProfileID");
         }
 
         /// <inheritdoc />
@@ -257,6 +322,12 @@ namespace Toilet_Clicker.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Locations");
+
+            migrationBuilder.DropTable(
+                name: "PlayerProfiles");
         }
     }
 }
