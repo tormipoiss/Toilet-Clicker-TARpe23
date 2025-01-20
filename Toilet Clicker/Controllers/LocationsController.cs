@@ -65,7 +65,7 @@ namespace Toilet_Clicker.Controllers
 				LocationType = (Core.Dto.LocationType)vm.LocationType,
 				LocationDescription = vm.LocationDescription,
 				LocationWasMade = vm.LocationWasMade,
-				CreatedAt = vm.CreatedAt,
+				CreatedAt = DateTime.Now,
 				Files = vm.Files,
 				Image = vm.Image
 				.Select(x => new FileToDatabaseDto
@@ -152,14 +152,23 @@ namespace Toilet_Clicker.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Update(LocationCreateViewModel vm)
 		{
+			var existingLocation = await _locationsServices.DetailsAsync((Guid)vm.ID);
+
+            if (existingLocation == null)
+            {
+                return NotFound();
+            }
+
+            _context.Entry(existingLocation).State = EntityState.Detached;
+
 			var dto = new LocationDto()
 			{
 				ID = (Guid)vm.ID,
 				LocationName = vm.LocationName,
 				LocationType = (Core.Dto.LocationType)vm.LocationType,
 				LocationDescription = vm.LocationDescription,
-				LocationWasMade = vm.LocationWasMade,
-				CreatedAt = vm.LocationWasMade,
+				LocationWasMade = existingLocation.LocationWasMade,
+				CreatedAt = existingLocation.CreatedAt,
 				Files = vm.Files,
 				Image = vm.Image
 				.Select(x => new FileToDatabaseDto

@@ -46,10 +46,17 @@ namespace Toilet_Clicker.ApplicationServices.Services
 			location.LocationType = (Core.Domain.LocationType)dto.LocationType;
 			location.LocationName = dto.LocationName;
 			location.LocationDescription = dto.LocationDescription;
-			location.LocationWasMade = dto.LocationWasMade;
+            if (dto.LocationWasMade == DateTime.MinValue)
+            {
+                location.LocationWasMade = DateTime.Now;
+            }
+            else
+            {
+                location.LocationWasMade = dto.LocationWasMade;
+            }
 
             //set for db
-            location.CreatedAt = dto.LocationWasMade;
+            location.CreatedAt = location.LocationWasMade;
 
 			//files
 			if (dto.Files != null)

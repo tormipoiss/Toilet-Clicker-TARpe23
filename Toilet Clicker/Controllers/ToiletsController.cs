@@ -20,7 +20,7 @@ namespace Toilet_Clicker.Controllers
 	public class ToiletsController : Controller
 	{
 		/*
-		 * ToiletsController controls all functions for toilets, including, missions.
+		 * ToiletsController controls all functions for toilets.
 		 */
 
 		private readonly ToiletClickerContext _context;
@@ -49,7 +49,7 @@ namespace Toilet_Clicker.Controllers
 					Speed = x.Speed,
 					SpeedPrice = x.SpeedPrice,
 					Location = x.Location,
-					ToiletWasBorn = x.CreatedAt,
+					ToiletWasBorn = x.ToiletWasBorn,
 				});
 			ViewBag.mode = "page";
 			return View(resultingInventory);
@@ -483,21 +483,29 @@ namespace Toilet_Clicker.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Update(ToiletCreateViewModel vm)
 		{
-			var dto = new ToiletDto()
+            var existingToilet = await _toiletsServices.DetailsAsync((Guid)vm.ID);
+
+            if (existingToilet == null)
+            {
+                return NotFound();
+            }
+
+            _context.Entry(existingToilet).State = EntityState.Detached;
+
+            var dto = new ToiletDto()
 			{
 				ID = (Guid)vm.ID,
 				ToiletName = vm.ToiletName,
-				Power = vm.Power,
-				PowerPrice = vm.PowerPrice,
-				Speed = vm.Speed,
-				SpeedPrice = vm.SpeedPrice,
-				Score = vm.Score,
+				Power = existingToilet.Power,
+				PowerPrice = existingToilet.PowerPrice,
+				Speed = existingToilet.Speed,
+				SpeedPrice = existingToilet.SpeedPrice,
+				Score = existingToilet.Score,
 				LocationID = vm.LocationID,
-				ToiletWasBorn = vm.ToiletWasBorn,
-				CreatedAt = DateTime.Now,
-				Files = vm.Files,
-				Image = vm.Image
-				.Select(x => new FileToDatabaseDto
+				ToiletWasBorn = existingToilet.ToiletWasBorn,
+				CreatedAt = existingToilet.CreatedAt,
+                Files = vm.Files,
+				Image = vm.Image.Select(x => new FileToDatabaseDto
 				{
 					ID = x.ImageID,
 					ImageData = x.ImageData,
@@ -512,6 +520,7 @@ namespace Toilet_Clicker.Controllers
 			if (result == null) { return RedirectToAction("Index"); }
 			return RedirectToAction("Index", vm);
 		}
+
 		[HttpGet]
 		public async Task<IActionResult> Delete(Guid id)
 		{
