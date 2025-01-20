@@ -40,15 +40,16 @@ namespace Toilet_Clicker.ApplicationServices.Services
 
 			// set by service
 			location.ID = Guid.NewGuid();
-			location.LocationWasMade = DateTime.Now;
+			//location.LocationWasMade = DateTime.Now;
 
 			//set by user
 			location.LocationType = (Core.Domain.LocationType)dto.LocationType;
 			location.LocationName = dto.LocationName;
 			location.LocationDescription = dto.LocationDescription;
+			location.LocationWasMade = dto.LocationWasMade;
 
-			//set for db
-			location.CreatedAt = DateTime.Now;
+            //set for db
+            location.CreatedAt = dto.LocationWasMade;
 
 			//files
 			if (dto.Files != null)
@@ -68,7 +69,7 @@ namespace Toilet_Clicker.ApplicationServices.Services
 
 			// set by service
 			location.ID = dto.ID;
-			location.LocationWasMade = DateTime.Now;
+			location.LocationWasMade = dto.LocationWasMade;
 
 			//set by user
 			location.LocationType = (Core.Domain.LocationType)dto.LocationType;
@@ -76,7 +77,7 @@ namespace Toilet_Clicker.ApplicationServices.Services
 			location.LocationDescription = dto.LocationDescription;
 
 			//set for db
-			location.CreatedAt = DateTime.Now;
+			location.CreatedAt = dto.CreatedAt;
 
 			//files
 			if (dto.Files != null)

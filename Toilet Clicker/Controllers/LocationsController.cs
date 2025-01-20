@@ -65,7 +65,7 @@ namespace Toilet_Clicker.Controllers
 				LocationType = (Core.Dto.LocationType)vm.LocationType,
 				LocationDescription = vm.LocationDescription,
 				LocationWasMade = vm.LocationWasMade,
-				CreatedAt = DateTime.Now,
+				CreatedAt = vm.CreatedAt,
 				Files = vm.Files,
 				Image = vm.Image
 				.Select(x => new FileToDatabaseDto
@@ -159,7 +159,7 @@ namespace Toilet_Clicker.Controllers
 				LocationType = (Core.Dto.LocationType)vm.LocationType,
 				LocationDescription = vm.LocationDescription,
 				LocationWasMade = vm.LocationWasMade,
-				CreatedAt = DateTime.Now,
+				CreatedAt = vm.LocationWasMade,
 				Files = vm.Files,
 				Image = vm.Image
 				.Select(x => new FileToDatabaseDto

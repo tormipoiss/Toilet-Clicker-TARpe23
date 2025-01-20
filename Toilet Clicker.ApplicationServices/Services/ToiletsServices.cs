@@ -47,15 +47,16 @@ namespace Toilet_Clicker.ApplicationServices.Services
             toilet.Speed = 1;
 			toilet.SpeedPrice = 1;
 			toilet.Score = 0;
-            toilet.ToiletWasBorn = DateTime.Now;
+            //toilet.ToiletWasBorn = DateTime.Now;
 
             //set by user
             toilet.ToiletName = dto.ToiletName;
             toilet.LocationID = dto.LocationID;
             toilet.Location = dto.Location;
+            toilet.ToiletWasBorn = dto.ToiletWasBorn;
 
             //set for db
-            toilet.CreatedAt = DateTime.Now;
+            toilet.CreatedAt = dto.ToiletWasBorn;
 
             //files
             if (dto.Files != null)
