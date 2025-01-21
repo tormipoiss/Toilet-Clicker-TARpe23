@@ -1,20 +1,21 @@
-﻿@model Toilet_Clicker.Models.Locations.LocationIndexViewModel
+﻿@* @model Toilet_Clicker.Models.Locations.LocationIndexViewModel
 
 <div>
-@* 	@foreach (var image in Model.Image)
+	@foreach (var Model in Model)
 	{
 		<partial name="_Images" model="image" />
-	} *@
+	}
 	@for (int i = 0; i < Model.Image.Count(); i++)
 	{
 		var image = Model.Image[i];
-		var locationID = Model.ID[i];
+		var locationID = Model[0].ID;
 		switch (i)
 		{
+			<div>
 			case 0:
 				<div class="d-flex justify-content-center">
 						@* SET IMAGE AS BACKGROUND *@
-					<img class="card-img-top" style="width:stretch; height:stretch" src="@Model.Image" asp-append-version="true" />
+@* 					<img class="card-img-top" style="width:stretch; height:stretch" src="@Model.Image" asp-append-version="true" />
 				</div>
 				break;
 			case 1:
@@ -32,6 +33,7 @@
 				break;
 			default:
 				break;
+			</div>
 		}
 	}
-</div>
+</div> *@

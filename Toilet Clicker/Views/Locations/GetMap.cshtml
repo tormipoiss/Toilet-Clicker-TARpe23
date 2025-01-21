@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Toilet_Clicker.Models.Locations.LocationIndexViewModel>
+
+<div style="background-image: url(../../wwwroot/Pildid/Map_1.jpg); width: 100%; height: 500px; background-size: cover;">
+@*     @foreach (var locationModel in Model)
+    {
+        int i = 0;
+        <div style="background-image: url(../../Pildid/Map_1.jpg)">
+            @{
+                var image = locationModel.Image[0];
+                var locationID = locationModel.Image[0].LocationID; 
+                switch (i)
+                {
+                    case 0:
+                        // <div class="d-flex justify-content-center">
+                        //     <img class="card-img-top" style="width: stretch; height: stretch" src="@image.Image" asp-append-version="true" />
+                        // </div>
+                        break;
+                    case 1:
+                        <div>
+                            <img href="../../Pildid/Asukoht_1_TTHK.jpg" />
+                            <a asp-action="details" asp-controller="locations" asp-route-id="@locationID" class="btn btn-info">Details</a>
+                        </div>
+                        break;
+                    case 2:
+                        <div>
+                            <img href="../../Pildid/Asukoht_2_Haigla.jpg" />
+                            <a asp-action="details" asp-controller="locations" asp-route-id="@locationID" class="btn btn-info">Details</a>
+                        </div>
+                        break;
+                    case 3:
+                        <div>
+                            <img href="../../Pildid/Asukoht_3_Kontor.jpg" />
+                            <a asp-action="details" asp-controller="locations" asp-route-id="@locationID" class="btn btn-info">Details</a>
+                        </div>
+                        break;
+                    case 4:
+                        <div>
+                            <img href="../../Pildid/Asukoht_4_Mets.jpg" />
+                            <a asp-action="details" asp-controller="locations" asp-route-id="@locationID" class="btn btn-info">Details</a>
+                        </div>
+                        break;
+                    default:
+                        break;
+                }
+                i++;
+            }
+        </div>
+	} *@
+</div>
