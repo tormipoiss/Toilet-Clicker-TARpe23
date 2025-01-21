@@ -31,7 +31,7 @@ namespace Toilet_Clicker.Data
                 return;
             }
 
-            var toilets = new Toilet[] 
+            var toilets = new Toilet[]
             {
                 new Toilet { ToiletName = "Markus", ToiletWasBorn = new DateTime(2000, 01, 30, 22, 30, 00), CreatedAt = new DateTime(2000, 01, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(0).ID },
                 new Toilet { ToiletName = "Liisu", ToiletWasBorn = new DateTime(1980, 06, 30, 22, 30, 00), CreatedAt = new DateTime(1980, 06, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(1).ID },
@@ -39,6 +39,38 @@ namespace Toilet_Clicker.Data
                 new Toilet { ToiletName = "Hanku", ToiletWasBorn = new DateTime(1950, 08, 30, 22, 30, 00), CreatedAt = new DateTime(1950, 08, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(3).ID }
             };
             _context.Toilets.AddRange(toilets);
+            _context.SaveChanges();
+
+            if (_context.FilesToDatabase.Any())
+            {
+                return;
+            }
+
+            string imageDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Pildid");
+
+            var imageFiles = Directory.GetFiles(imageDirectory);
+
+            var locationImageFiles = imageFiles.Where(file => file.Contains("Asukoht"));
+            var toiletImageFiles = imageFiles.Where(file => file.Contains("Tualett"));
+
+            var locationImages = locationImageFiles.Select((file, index) => new FileToDatabase
+            {
+                ID = Guid.NewGuid(),
+                ImageTitle = file.Substring(77),
+                ImageData = File.ReadAllBytes(file),
+                LocationID = _context.Locations.ElementAt(index).ID
+            }).ToArray();
+
+            var toiletImages = toiletImageFiles.Select((file, index) => new FileToDatabase
+            {
+                ID = Guid.NewGuid(),
+                ImageTitle = file.Substring(77),
+                ImageData = File.ReadAllBytes(file),
+                ToiletID = _context.Toilets.ElementAt(index).ID
+            }).ToArray();
+
+            _context.FilesToDatabase.AddRange(locationImages);
+            _context.FilesToDatabase.AddRange(toiletImages);
             _context.SaveChanges();
         }
     }
