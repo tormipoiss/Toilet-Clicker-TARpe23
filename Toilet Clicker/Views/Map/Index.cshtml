@@ -1,0 +1,9 @@
+﻿@model Toilet_Clicker.Models.Map.MapIndexViewModel
+
+<div>
+	@foreach (var image in Model.Image)
+	{
+		<partial name="_Images" model="image" />
+	}
+	<a asp-action="details" asp-controller="locations" asp-route-id="092a8a78-32d1-4dad-8885-08dd3a094d77" class="btn btn-info">LocationDetails</a>
+</div>

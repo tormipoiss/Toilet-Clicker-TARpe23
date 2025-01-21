@@ -52,6 +52,7 @@ namespace Toilet_Clicker.Data
 
             var locationImageFiles = imageFiles.Where(file => file.Contains("Asukoht"));
             var toiletImageFiles = imageFiles.Where(file => file.Contains("Tualett"));
+            var mapImageFiles = imageFiles.Where(file => file.Contains("Map"));
 
             var locationImages = locationImageFiles.Select((file, index) => new FileToDatabase
             {
@@ -69,8 +70,16 @@ namespace Toilet_Clicker.Data
                 ToiletID = _context.Toilets.ElementAt(index).ID
             }).ToArray();
 
+            var mapImages = mapImageFiles.Select((file, index) => new FileToDatabase
+            {
+                ID = Guid.NewGuid(),
+                ImageTitle = file.Substring(77),
+                ImageData = File.ReadAllBytes(file),
+            }).ToArray();
+
             _context.FilesToDatabase.AddRange(locationImages);
             _context.FilesToDatabase.AddRange(toiletImages);
+            _context.FilesToDatabase.AddRange(mapImages);
             _context.SaveChanges();
         }
     }

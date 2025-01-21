@@ -1,0 +1,11 @@
+﻿@model Toilet_Clicker.Models.Map.MapImageViewModel
+
+<div class="d-flex justify-content-center">
+	<div>
+		@if (!Model.Image.Any())
+		{
+			<p>"No images are found"</p>
+		}
+	</div>
+	<img class="card-img-top" style="width:stretch; height:stretch" src="@Model.Image" asp-append-version="true" />
+</div>
