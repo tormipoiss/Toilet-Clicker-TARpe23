@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\views\\toilets\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\views\\toilets\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1531B708-F346-410C-A885-A95F86FBD2A7}|Toilet Clicker.ApplicationServices\\Toilet Clicker.ApplicationServices.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker.applicationservices\\services\\locationsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1531B708-F346-410C-A885-A95F86FBD2A7}|Toilet Clicker.ApplicationServices\\Toilet Clicker.ApplicationServices.csproj|solutionrelative:toilet clicker.applicationservices\\services\\locationsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,10 +23,6 @@
       "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\controllers\\locationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\views\\toilets\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\views\\toilets\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\models\\toilets\\toiletcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\models\\toilets\\toiletcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1531B708-F346-410C-A885-A95F86FBD2A7}|Toilet Clicker.ApplicationServices\\Toilet Clicker.ApplicationServices.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker.applicationservices\\services\\playerprofilesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1531B708-F346-410C-A885-A95F86FBD2A7}|Toilet Clicker.ApplicationServices\\Toilet Clicker.ApplicationServices.csproj|solutionrelative:toilet clicker.applicationservices\\services\\playerprofilesservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 796,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +50,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Update.cshtml",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Toilets\\Update.cshtml",
               "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Toilets\\Update.cshtml",
@@ -63,7 +63,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ToiletCreateViewModel.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Models\\Toilets\\ToiletCreateViewModel.cs",
               "RelativeDocumentMoniker": "Toilet Clicker\\Models\\Toilets\\ToiletCreateViewModel.cs",
@@ -76,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "LocationsController.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Controllers\\LocationsController.cs",
               "RelativeDocumentMoniker": "Toilet Clicker\\Controllers\\LocationsController.cs",
@@ -89,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "PlayerProfilesServices.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker.ApplicationServices\\Services\\PlayerProfilesServices.cs",
               "RelativeDocumentMoniker": "Toilet Clicker.ApplicationServices\\Services\\PlayerProfilesServices.cs",
@@ -102,12 +102,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "LocationsServices.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker.ApplicationServices\\Services\\LocationsServices.cs",
               "RelativeDocumentMoniker": "Toilet Clicker.ApplicationServices\\Services\\LocationsServices.cs",
-              "ToolTip": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker.ApplicationServices\\Services\\LocationsServices.cs*",
-              "RelativeToolTip": "Toilet Clicker.ApplicationServices\\Services\\LocationsServices.cs*",
+              "ToolTip": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker.ApplicationServices\\Services\\LocationsServices.cs",
+              "RelativeToolTip": "Toilet Clicker.ApplicationServices\\Services\\LocationsServices.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAArwC8AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T13:59:50.956Z",
@@ -115,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Program.cs",
               "RelativeDocumentMoniker": "Toilet Clicker\\Program.cs",
@@ -128,20 +128,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "DbInitializer.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Data\\DbInitializer.cs",
               "RelativeDocumentMoniker": "Toilet Clicker\\Data\\DbInitializer.cs",
               "ToolTip": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Data\\DbInitializer.cs",
               "RelativeToolTip": "Toilet Clicker\\Data\\DbInitializer.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAACUAAADRAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAACUAAADRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T10:09:41.337Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ToiletsController.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Controllers\\ToiletsController.cs",
               "RelativeDocumentMoniker": "Toilet Clicker\\Controllers\\ToiletsController.cs",
