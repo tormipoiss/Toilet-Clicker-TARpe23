@@ -5,7 +5,8 @@
 		@if (!Model.Image.Any())
 		{
 			<p>"No images are found"</p>
-		}
+		} 
+		@* SET IMAGE AS BACKGROUND *@
 	</div>
 	<img class="card-img-top" style="width:stretch; height:stretch" src="@Model.Image" asp-append-version="true" />
 </div>

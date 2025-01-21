@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components.Web;
+﻿using System.Drawing;
+using System.Linq;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -48,6 +50,55 @@ namespace Toilet_Clicker.Controllers
 		}
 
 		[HttpGet]
+        public async Task<IActionResult> GetMap()
+        {
+            var locationImages = new Dictionary<Guid, List<LocationImageViewModel>>();
+
+            var image = await _context.FilesToDatabase
+                .Where(t => t.ImageTitle == "Map_1.jpg")
+                .Select(y => new LocationImageViewModel
+                {
+                    LocationID = y.ID,
+                    ImageID = y.ID,
+                    ImageData = y.ImageData,
+                    ImageTitle = y.ImageTitle,
+                    Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+                }).ToListAsync();
+
+            locationImages[(Guid)image[0].LocationID] = image;
+
+            foreach (var location in _context.Locations.Take(4))
+			{
+                var images = await _context.FilesToDatabase
+                .Where(t => t.LocationID == location.ID)
+                .Select(y => new LocationImageViewModel
+                {
+                    LocationID = y.ID,
+                    ImageID = y.ID,
+                    ImageData = y.ImageData,
+                    ImageTitle = y.ImageTitle,
+                    Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+                }).ToListAsync();
+
+                locationImages[location.ID] = images;
+            }
+
+			var locationsViewModel = _context.Locations
+				.Take(4)
+				.Select(x => new LocationIndexViewModel
+				{
+					ID = x.ID,
+					LocationName = x.LocationName,
+					LocationType = (Models.Locations.LocationType)(Core.Dto.LocationType)x.LocationType,
+					LocationDescription = x.LocationDescription,
+					LocationWasMade = x.CreatedAt,
+                    Image = locationImages.ContainsKey(x.ID) ? locationImages[x.ID] : new List<LocationImageViewModel>()
+                });
+
+            return View(locationsViewModel);
+        }
+
+        [HttpGet]
 		public IActionResult Create()
 		{
 			LocationCreateViewModel vm = new();

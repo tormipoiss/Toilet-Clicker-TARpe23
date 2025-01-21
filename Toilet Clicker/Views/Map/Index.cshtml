@@ -1,9 +1,37 @@
-﻿@model Toilet_Clicker.Models.Map.MapIndexViewModel
+﻿@model Toilet_Clicker.Models.Locations.LocationIndexViewModel
 
 <div>
-	@foreach (var image in Model.Image)
+@* 	@foreach (var image in Model.Image)
 	{
 		<partial name="_Images" model="image" />
+	} *@
+	@for (int i = 0; i < Model.Image.Count(); i++)
+	{
+		var image = Model.Image[i];
+		var locationID = Model.ID[i];
+		switch (i)
+		{
+			case 0:
+				<div class="d-flex justify-content-center">
+						@* SET IMAGE AS BACKGROUND *@
+					<img class="card-img-top" style="width:stretch; height:stretch" src="@Model.Image" asp-append-version="true" />
+				</div>
+				break;
+			case 1:
+				<a asp-action="details" asp-controller="locations" asp-route-id="@location.ID" class="btn btn-info">Details</a>
+				<partial name="_Images" model="imageTTHK" />
+				break;
+			case 2:
+				// code block
+				break;
+			case 3:
+				// code block
+				break;
+			case 4:
+				// code block
+				break;
+			default:
+				break;
+		}
 	}
-	<a asp-action="details" asp-controller="locations" asp-route-id="092a8a78-32d1-4dad-8885-08dd3a094d77" class="btn btn-info">LocationDetails</a>
 </div>
