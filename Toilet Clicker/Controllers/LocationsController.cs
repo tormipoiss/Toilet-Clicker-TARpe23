@@ -52,66 +52,9 @@ namespace Toilet_Clicker.Controllers
 		[HttpGet]
         public async Task<IActionResult> GetMap()
         {
-   //         var locationImages = new Dictionary<Guid, List<LocationImageViewModel>>();
-
-   //         var image = await _context.FilesToDatabase
-   //             .Where(t => t.ImageTitle == "Map_1.jpg")
-   //             .Select(y => new LocationImageViewModel
-   //             {
-   //                 LocationID = y.ID,
-   //                 ImageID = y.ID,
-   //                 ImageData = y.ImageData,
-   //                 ImageTitle = y.ImageTitle,
-   //                 Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
-   //             }).ToListAsync();
-
-   //         locationImages[(Guid)image[0].LocationID] = image;
-
-   //         foreach (var location in _context.Locations.Take(4))
-			//{
-   //             var images = await _context.FilesToDatabase
-   //             .Where(t => t.LocationID == location.ID)
-   //             .Select(y => new LocationImageViewModel
-   //             {
-   //                 LocationID = y.ID,
-   //                 ImageID = y.ID,
-   //                 ImageData = y.ImageData,
-   //                 ImageTitle = y.ImageTitle,
-   //                 Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
-   //             }).ToListAsync();
-
-   //             locationImages[location.ID] = images;
-   //         }
-
-			//var locationsViewModel = _context.Locations
-			//	.Take(4)
-			//	.Select(x => new LocationIndexViewModel
-			//	{
-			//		ID = x.ID,
-			//		LocationName = x.LocationName,
-			//		LocationType = (Models.Locations.LocationType)(Core.Dto.LocationType)x.LocationType,
-			//		LocationDescription = x.LocationDescription,
-			//		LocationWasMade = x.CreatedAt,
-   //                 Image = locationImages.ContainsKey(x.ID) ? locationImages[x.ID] : new List<LocationImageViewModel>()
-   //             });
-
             var locations = await _context.Locations.Take(4).ToListAsync();
 
             var locationImages = new Dictionary<Guid, List<LocationImageViewModel>>();
-
-			// Fetch and add map-specific image
-			var mapImage = await _context.FilesToDatabase
-				.Where(t => t.ImageTitle == "Map_1.jpg")
-				.Select(y => new LocationImageViewModel
-				{
-					LocationID = y.ID,
-					ImageID = y.ID,
-					ImageData = y.ImageData,
-					ImageTitle = y.ImageTitle,
-					Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
-				}).ToListAsync();
-
-            locationImages[(Guid)mapImage[0].LocationID] = mapImage;
 
             foreach (var location in locations)
             {

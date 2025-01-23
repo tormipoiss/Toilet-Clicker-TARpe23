@@ -1,5 +1,4 @@
 ﻿using Toilet_Clicker.Core.Domain;
-using Toilet_Clicker.Models.Map;
 
 namespace Toilet_Clicker.Models.Locations
 {

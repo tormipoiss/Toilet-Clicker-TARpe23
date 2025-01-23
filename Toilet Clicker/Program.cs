@@ -47,6 +47,7 @@ internal class Program
             );
 
         var app = builder.Build();
+        app.UseStaticFiles();
         CreateDbIfNotExists(app);
 
         // Configure the HTTP request pipeline.
@@ -58,7 +59,6 @@ internal class Program
         }
 
         app.UseHttpsRedirection();
-        app.UseStaticFiles();
 
         app.UseRouting();
 
