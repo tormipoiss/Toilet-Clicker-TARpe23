@@ -9,7 +9,7 @@ namespace Toilet_Clicker.Models.Locations
 		public LocationType LocationType { get; set; }
 		public string LocationDescription { get; set; }
 		public DateTime LocationWasMade { get; set; }
-		//public List<IFormFile> Files { get; set; }
-		public List<LocationImageViewModel> Image { get; set; } = new List<LocationImageViewModel>();
+        public List<Toilet>? Toilets { get; set; } = new List<Toilet>();
+        public List<LocationImageViewModel> Image { get; set; } = new List<LocationImageViewModel>();
 	}
 }

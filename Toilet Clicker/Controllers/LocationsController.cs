@@ -62,7 +62,7 @@ namespace Toilet_Clicker.Controllers
                     .Where(t => t.LocationID == location.ID)
                     .Select(y => new LocationImageViewModel
                     {
-                        LocationID = y.ID,
+                        LocationID = y.LocationID,
                         ImageID = y.ID,
                         ImageData = y.ImageData,
                         ImageTitle = y.ImageTitle,
@@ -150,6 +150,7 @@ namespace Toilet_Clicker.Controllers
 			vm.LocationType = (Models.Locations.LocationType)location.LocationType;
 			vm.LocationDescription = location.LocationDescription;
 			vm.LocationWasMade = location.LocationWasMade;
+			vm.Toilets = _context.Toilets.Where(t => t.LocationID == id).ToList();
 			vm.Image.AddRange(images);
 
 			return View(vm);

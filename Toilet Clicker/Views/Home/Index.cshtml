@@ -1,13 +1,24 @@
-﻿﻿@{
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<Toilet_Clicker.Core.Domain.ApplicationUser> signInManager;
+
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <div style="margin-top:11px" class="d-flex justify-content-center">
-        <a asp-action="GetMap" asp-controller="Locations" class="btn btn-primary"
-           style="display: flex; align-items: center; justify-content: center; text-align: center; margin-top: 2em; width: 200px; height: 120px; font-size:larger;">
-            View game map
-        </a>
+        @if (signInManager.IsSignedIn(User)) 
+        {
+            <a asp-action="GetMap" asp-controller="Locations" class="btn btn-primary"
+               style="display: flex; align-items: center; justify-content: center; text-align: center; margin-top: 2em; width: 200px; height: 120px; font-size:larger;">
+                View game map
+            </a>
+        }
+        else 
+        {
+            <h2>Please login to play</h2>
+        }
+        
     </div>
 </div>
