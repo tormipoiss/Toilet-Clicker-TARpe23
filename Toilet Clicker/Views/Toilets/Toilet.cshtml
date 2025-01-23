@@ -2,22 +2,30 @@
 
 <h1> @Html.DisplayFor(model => model.ToiletName) </h1>
 
+<head>
+	<style>
+		#toiletimg:hover {
+			filter: brightness(80%);
+		}
+	</style>
+</head>
+
 <div>
 	<h4> Click the toilet and upgrade : </h4>
 	<hr />
 	<dl class="row">
-		<div id="imagediv">
+@* 		<div id="imagediv">
 			@foreach (var image in Model.Image)
 			{
 				<partial name="_Images" model="image" />
 				break;
 			}
-		</div>
+		</div> *@
 		<div>
 			<form asp-action="click" asp-controller="toilets" method="post">
 				<input type="hidden" name="id" value="@Model.ID" />
-				<button type="submit" class="btn btn-primary" style="width:200px; height:120px; padding:50px">
-					[Click here]
+				<button type="submit" class="btn btn-primary" style="width:200px; height:200px">
+					<img id="toiletimg" style="width:195px; height:195px; position:relative; left:-10px; top:-5px" src="@Model.Image[0].Image" asp-append-version="true" />
 				</button>
 			</form>
 		</div>
