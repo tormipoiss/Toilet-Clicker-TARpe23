@@ -14,13 +14,6 @@
 	<h4> Click the toilet and upgrade : </h4>
 	<hr />
 	<dl class="row">
-@* 		<div id="imagediv">
-			@foreach (var image in Model.Image)
-			{
-				<partial name="_Images" model="image" />
-				break;
-			}
-		</div> *@
 		<div>
 			<form asp-action="click" asp-controller="toilets" method="post">
 				<input type="hidden" name="id" value="@Model.ID" />
@@ -65,5 +58,11 @@
 		@Html.DisplayFor(model => model.SpeedPrice)
 		<span>&nbsp;&nbsp;&nbsp;(Speed gives score based on speed level for each second)</span>
 	</div>
-	<div style="margin-top:11px"><a asp-action="Index" asp-controller="toilets" class="btn btn-secondary">Index</a></div>
+
+	<div style="margin-top:11px">
+		<a asp-action="Details" asp-controller="toilets" class="btn btn-primary" asp-route-id="@Model.ID">Toilet Details</a>
+	</div>
+	<div style="margin-top:11px">
+		<a asp-action="Index" asp-controller="toilets" class="btn btn-secondary">Index</a>
+	</div>
 </div>

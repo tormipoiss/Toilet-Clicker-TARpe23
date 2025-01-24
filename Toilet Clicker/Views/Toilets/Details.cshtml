@@ -62,6 +62,10 @@
 			@Html.DisplayFor(model => model.ToiletWasBorn)
 		</div>*@
 	</dl>
-
-	<a asp-action="Index" asp-controller="toilets" class="btn btn-secondary">Index</a>
+	<div>
+		<a asp-action="toilet" asp-controller="toilets" asp-route-id="@Model.ID" class="btn btn-info">Back to clicking</a>
+	</div>
+	<div style="margin-top:11px">
+		<a asp-action="Index" asp-controller="toilets" class="btn btn-secondary">Index</a>
+	</div>
 </div>

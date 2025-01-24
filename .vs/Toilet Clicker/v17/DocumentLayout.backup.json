@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\views\\toilets\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\views\\toilets\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|c:\\users\\tormi\\desktop\\programmeerimine\\absolutefolder\\toilet clicker\\views\\toilets\\toilet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{96E7DCC7-5874-4E89-9445-7629DEAE30F5}|Toilet Clicker\\Toilet Clicker.csproj|solutionrelative:toilet clicker\\views\\toilets\\toilet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -52,19 +56,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Toilets\\Details.cshtml",
+              "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Toilets\\Details.cshtml",
+              "ToolTip": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Toilets\\Details.cshtml*",
+              "RelativeToolTip": "Toilet Clicker\\Views\\Toilets\\Details.cshtml*",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAEMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-24T10:17:29.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Toilet.cshtml",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Toilets\\Toilet.cshtml",
               "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Toilets\\Toilet.cshtml",
-              "ToolTip": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Toilets\\Toilet.cshtml*",
-              "RelativeToolTip": "Toilet Clicker\\Views\\Toilets\\Toilet.cshtml*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAYAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Toilets\\Toilet.cshtml",
+              "RelativeToolTip": "Toilet Clicker\\Views\\Toilets\\Toilet.cshtml",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEAAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-23T17:48:06.55Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "LocationDetailsViewModel.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Models\\Locations\\LocationDetailsViewModel.cs",
               "RelativeDocumentMoniker": "Toilet Clicker\\Models\\Locations\\LocationDetailsViewModel.cs",
@@ -72,12 +89,11 @@
               "RelativeToolTip": "Toilet Clicker\\Models\\Locations\\LocationDetailsViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-23T17:08:42.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-23T17:08:42.674Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Home\\Index.cshtml",
@@ -85,12 +101,11 @@
               "RelativeToolTip": "Toilet Clicker\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-23T16:50:04.035Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-23T16:50:04.035Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Locations\\Details.cshtml",
               "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Locations\\Details.cshtml",
@@ -98,42 +113,38 @@
               "RelativeToolTip": "Toilet Clicker\\Views\\Locations\\Details.cshtml",
               "ViewState": "AgIAADYAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-23T15:27:16.912Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-23T15:27:16.912Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "dbo.FilesToDatabase.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/INDEV_TOILETCLICKER_DB/True/SqlTable/dbo.FilesToDatabase.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/INDEV_TOILETCLICKER_DB/True/SqlTable/dbo.FilesToDatabase.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-01-23T15:22:20.965Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "dbo.FilesToDatabase [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/INDEV_TOILETCLICKER_DB/True/SqlTable/dbo.FilesToDatabase.sql",
-              "ToolTip": "dbo.FilesToDatabase [Data]",
+              "Title": "dbo.Toilets.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/INDEV_TOILETCLICKER_DB/True/SqlTable/dbo.Toilets.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/INDEV_TOILETCLICKER_DB/True/SqlTable/dbo.Toilets.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-01-23T15:22:20.965Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-23T15:22:15.823Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "dbo.Toilets [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/INDEV_TOILETCLICKER_DB/True/SqlTable/dbo.Toilets.sql",
-              "ToolTip": "dbo.Toilets [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-01-23T15:22:15.823Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "dbo.Locations [Data]",
+              "Title": "dbo.Locations.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/INDEV_TOILETCLICKER_DB/True/SqlTable/dbo.Locations.sql",
-              "ToolTip": "dbo.Locations [Data]",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/INDEV_TOILETCLICKER_DB/True/SqlTable/dbo.Locations.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-01-23T15:17:27.988Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-23T15:17:27.988Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GetMap.cshtml",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Views\\Locations\\GetMap.cshtml",
               "RelativeDocumentMoniker": "Toilet Clicker\\Views\\Locations\\GetMap.cshtml",
@@ -141,12 +152,11 @@
               "RelativeToolTip": "Toilet Clicker\\Views\\Locations\\GetMap.cshtml",
               "ViewState": "AgIAABIAAAAAAAAAAAAAAAwAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-21T20:41:40.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T20:41:40.579Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "LocationsController.cs",
               "DocumentMoniker": "C:\\Users\\tormi\\Desktop\\Programmeerimine\\absolutefolder\\Toilet Clicker\\Controllers\\LocationsController.cs",
               "RelativeDocumentMoniker": "Toilet Clicker\\Controllers\\LocationsController.cs",
@@ -154,8 +164,7 @@
               "RelativeToolTip": "Toilet Clicker\\Controllers\\LocationsController.cs",
               "ViewState": "AgIAAIYAAAAAAAAAAAAswJMAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T17:16:22.051Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T17:16:22.051Z"
             }
           ]
         }
