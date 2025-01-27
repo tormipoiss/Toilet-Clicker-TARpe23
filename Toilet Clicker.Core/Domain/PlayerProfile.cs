@@ -17,7 +17,9 @@ namespace Toilet_Clicker.Core.Domain
         public string ScreenName { get; set; }
         public List<ToiletOwnership> MyToilets { get; set; }
         public ProfileStatus CurrentStatus { get; set; }
+
         public bool ProfileType { get; set; } //true, admin, false, player
+
         //dbonly
         public DateTime ProfileCreatedAt { get; set; }
         public DateTime ProfileModifiedAt { get; set; }

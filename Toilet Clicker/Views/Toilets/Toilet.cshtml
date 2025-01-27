@@ -31,8 +31,16 @@
 			@Html.DisplayFor(model => model.Power)
 		</div>
 		<div class="form-group row">
+			<label asp-for="ScorePerClick" class="col-sm-2 col-form-label">Score / Click</label>
+			@Html.DisplayFor(model => model.ScorePerClick)
+		</div>
+		<div class="form-group row">
 			<label asp-for="Speed" class="col-sm-2 col-form-label"></label>
 			@Html.DisplayFor(model => model.Speed)
+		</div>
+		<div class="form-group row">
+			<label asp-for="ClickCount" class="col-sm-2 col-form-label">Click Count</label>
+			@Html.DisplayFor(model => model.ClickCount)
 		</div>
 	</dl>
 
@@ -56,7 +64,7 @@
 		</form>
 		<label asp-for="SpeedPrice" class="col-sm-1 col-form-label">Speed price:</label>
 		@Html.DisplayFor(model => model.SpeedPrice)
-		<span>&nbsp;&nbsp;&nbsp;(Speed gives score based on speed level for each second)</span>
+		<span>&nbsp;&nbsp;&nbsp;(Speed value shows how much score you get every second. Max is 30 min)</span>
 	</div>
 
 	<div style="margin-top:11px">

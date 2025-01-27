@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Toilet_Clicker.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class inast : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,6 +32,7 @@ namespace Toilet_Clicker.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PlayerProfileID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProfileType = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -215,10 +216,12 @@ namespace Toilet_Clicker.Data.Migrations
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ToiletName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Power = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    ScorePerClick = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
                     PowerPrice = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
                     Speed = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
                     SpeedPrice = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
                     Score = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    ClickCount = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
                     LocationID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ToiletWasBorn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),

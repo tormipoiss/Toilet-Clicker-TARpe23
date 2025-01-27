@@ -204,7 +204,8 @@ namespace Toilet_Clicker.Controllers
 					UserName = model.Email,
 					Email = model.Email,
 					City = model.City,
-				};
+                    ProfileType = model.ProfileType
+                };
 				var result = await _userManager.CreateAsync(user, model.Password);
 				TempData["NewUserID"] = user.Id;
 				if (result.Succeeded)
@@ -226,23 +227,6 @@ namespace Toilet_Clicker.Controllers
 					}
 
                     return RedirectToAction("NewProfile", "PlayerProfiles");
-
-                    //               List<string> errordatas =
-                    //                   [
-                    //                   "Area", "Accounts",
-                    //                   "Issue", "Success",
-                    //                   "StatusMessage", "Registration Success",
-                    //                   "ActedOn", $"{model.Email}",
-                    //                   "CreatedAccountData", $"{model.Email}\n{model.City}\n[password hidden]\n[password hidden]"
-                    //                   ];
-                    //               ViewBag.ErrorDatas = errordatas;
-                    //               ViewBag.ErrorTitle = "You have successfully registered";
-                    //               ViewBag.ErrorMessage = "Before you can log in, please confirm email from the link" +
-                    //                   "\nwe have emailed to your email address.";
-
-                    ////var newprofileforthisuser = _context
-
-                    //               return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
                 }
 				foreach (var error in result.Errors)
 				{

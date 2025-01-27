@@ -16,9 +16,9 @@ namespace Toilet_Clicker.Data
         public ToiletClickerContext(DbContextOptions<ToiletClickerContext> options) : base(options) { }
         public DbSet<Toilet> Toilets { get; set; }
 		public DbSet<Location> Locations { get; set; }
-
 		public DbSet<FileToDatabase> FilesToDatabase { get; set; }
 		public DbSet<IdentityRole> IdentityRoles { get; set; }
 		public DbSet<PlayerProfile> PlayerProfiles { get; set; }
+		public DbSet<ToiletOwnership> ToiletOwnerships { get; set; }
 	}
 }

@@ -13,5 +13,6 @@ namespace Toilet_Clicker.Models.Accounts
 		[Display(Name = "Remember this account?")]
         public bool RememberMe { get; set; }
         public string? ReturnURL { get; set; }
+        public bool ProfileType { get; set; } //true, admin, false, player
     }
 }

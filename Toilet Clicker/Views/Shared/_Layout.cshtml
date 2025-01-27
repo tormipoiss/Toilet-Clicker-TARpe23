@@ -1,5 +1,9 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿@using Toilet_Clicker.Core.Domain
+@using Toilet_Clicker.Core.ServiceInterface
+@using Microsoft.AspNetCore.Identity;
 @inject SignInManager<Toilet_Clicker.Core.Domain.ApplicationUser> signInManager;
+@inject UserManager<Toilet_Clicker.Core.Domain.ApplicationUser> userManager;
+@inject IPlayerProfilesServices PlayerProfilesServices;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +21,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Toilet_Clicker</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -25,23 +29,48 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @{PlayerProfile userprofile = new PlayerProfile();}
                         @if (signInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Toilets" asp-action="Index">My Toilets</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Locations" asp-action="GetMap">Map</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Locations" asp-action="Index">My Locations</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Emails" asp-action="Index">Test Email Sending</a>
-                            </li>
+                            var empty = "";
+                            var test = User.Claims;
+                            List<string> parsedclaims = new List<string>();
+                            foreach (var claim in test)
+                            {
+                                parsedclaims.Add(claim.ToString());
+                                if (claim.ToString().Contains("nameidentifier"))
+                                {
+                                    empty = claim.ToString().Substring(70, 36);
+                                }
+                            }
+                            Guid userid = Guid.Parse(empty);
+                            var user = await userManager.FindByIdAsync(userid.ToString());
+                            userprofile = await PlayerProfilesServices.DetailsAsync(userid);
+                            @*                             userprofile = await PlayerProfilesServices.DetailsAsync(userid); *@
+                            if (user.ProfileType == true)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Toilets" asp-action="Index">My Toilets</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Locations" asp-action="Index">My Locations</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Emails" asp-action="Index">Test Email Sending</a>
+                                </li>
+                            }
                         }
                     </ul>
                     @* User login section on the navbar *@
                     <ul class="navbar-nav ml-auto">
                         @if (signInManager.IsSignedIn(User))
                         {
+                            var empty = "";
+                            var test = User.Claims;
+
                             <li class="nav-item dropdown">
                                 <div class="dropdown">
                                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,7 +90,7 @@
                             <li class="nav-item">
                                 <form method="post" asp-controller="Accounts" asp-action="Logout">
                                     <button type="submit" class="nav-link btn btn-link py-0" style="width:auto; padding-top: 0.8rem;">
-                                        Logout @User.Identity.Name
+                                        Logout @userprofile.ScreenName @* User.Identity.Name *@
                                     </button>
                                 </form>
                             </li>

@@ -12,6 +12,7 @@ namespace Toilet_Clicker.Core.Domain
         public ulong Power { get; set; }
         public ulong Speed { get; set; }
         public ulong Score { get; set; }
+        public ulong ClickCount { get; set; }
         public DateTime ToiletWasBorn { get; set; }
         //public string OwnedByPlayerProfile { get; set; } //is string but holds guid
 

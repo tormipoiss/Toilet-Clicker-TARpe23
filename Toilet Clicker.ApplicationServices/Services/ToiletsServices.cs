@@ -43,10 +43,12 @@ namespace Toilet_Clicker.ApplicationServices.Services
             // set by service
             toilet.ID = Guid.NewGuid();
             toilet.Power = 1;
+            toilet.ScorePerClick = 1;
             toilet.PowerPrice = 1;
             toilet.Speed = 1;
 			toilet.SpeedPrice = 1;
 			toilet.Score = 0;
+			toilet.ClickCount = 0;
             if (dto.ToiletWasBorn == DateTime.MinValue)
             {
                 toilet.ToiletWasBorn = DateTime.Now;
@@ -83,10 +85,12 @@ namespace Toilet_Clicker.ApplicationServices.Services
             // set by service
             toilet.ID = dto.ID;
 			toilet.Power = dto.Power;
+			toilet.ScorePerClick = dto.ScorePerClick;
             toilet.PowerPrice = dto.PowerPrice;
 			toilet.Speed = dto.Speed;
             toilet.SpeedPrice= dto.SpeedPrice;
 			toilet.Score = dto.Score;
+			toilet.ClickCount = dto.ClickCount;
 			toilet.ToiletWasBorn = dto.ToiletWasBorn;
 
 			//set by user

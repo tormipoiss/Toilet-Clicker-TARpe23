@@ -10,5 +10,6 @@ namespace Toilet_Clicker.Core.ServiceInterface
     public interface IPlayerProfilesServices
     {
         Task<PlayerProfile> Create(string useridfor);
+        Task<PlayerProfile> DetailsAsync(Guid id);
     }
 }

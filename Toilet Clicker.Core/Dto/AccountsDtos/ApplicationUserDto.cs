@@ -13,5 +13,6 @@ namespace Toilet_Clicker.Core.Dto.AccountsDtos
         public string Password { get; set; }
         public string Email { get; set; }
         public Guid? AssociatedPlayerProfile { get; set; }
+        public bool ProfileType { get; set; } //true, admin, false, player
     }
 }

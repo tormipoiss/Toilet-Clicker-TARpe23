@@ -33,10 +33,10 @@ namespace Toilet_Clicker.Data
 
             var toilets = new Toilet[]
             {
-                new Toilet { ToiletName = "Markus", ToiletWasBorn = new DateTime(2000, 01, 30, 22, 30, 00), CreatedAt = new DateTime(2000, 01, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(0).ID, Power = 1, PowerPrice = 1, Speed = 1, SpeedPrice = 1 },
-                new Toilet { ToiletName = "Liisu", ToiletWasBorn = new DateTime(1980, 06, 30, 22, 30, 00), CreatedAt = new DateTime(1980, 06, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(1).ID, Power = 2, PowerPrice = 2, Speed = 2, SpeedPrice = 2 },
-                new Toilet { ToiletName = "Miisu", ToiletWasBorn = new DateTime(1995, 12, 30, 22, 30, 00), CreatedAt = new DateTime(1995, 12, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(2).ID, Power = 3, PowerPrice = 4, Speed = 3, SpeedPrice = 4 },
-                new Toilet { ToiletName = "Hanku", ToiletWasBorn = new DateTime(1950, 08, 30, 22, 30, 00), CreatedAt = new DateTime(1950, 08, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(3).ID, Power = 4, PowerPrice = 8, Speed = 4, SpeedPrice = 8 }
+                new Toilet { ToiletName = "Markus", ToiletWasBorn = new DateTime(2000, 01, 30, 22, 30, 00), CreatedAt = new DateTime(2000, 01, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(0).ID, Power = 1, ScorePerClick = 1, PowerPrice = 1, Speed = 1, SpeedPrice = 1 },
+                new Toilet { ToiletName = "Liisu", ToiletWasBorn = new DateTime(1980, 06, 30, 22, 30, 00), CreatedAt = new DateTime(1980, 06, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(1).ID, Power = 2, ScorePerClick = 4, PowerPrice = 2, Speed = 2, SpeedPrice = 2 },
+                new Toilet { ToiletName = "Miisu", ToiletWasBorn = new DateTime(1995, 12, 30, 22, 30, 00), CreatedAt = new DateTime(1995, 12, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(2).ID, Power = 3, ScorePerClick = 6, PowerPrice = 4, Speed = 3, SpeedPrice = 4 },
+                new Toilet { ToiletName = "Hanku", ToiletWasBorn = new DateTime(1950, 08, 30, 22, 30, 00), CreatedAt = new DateTime(1950, 08, 30, 22, 30, 00), LocationID = _context.Locations.ElementAt(3).ID, Power = 4, ScorePerClick = 8, PowerPrice = 8, Speed = 4, SpeedPrice = 8 }
             };
             _context.Toilets.AddRange(toilets);
             _context.SaveChanges();

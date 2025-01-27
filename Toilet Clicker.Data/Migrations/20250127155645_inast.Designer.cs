@@ -12,8 +12,8 @@ using Toilet_Clicker.Data;
 namespace Toilet_Clicker.Data.Migrations
 {
     [DbContext(typeof(ToiletClickerContext))]
-    [Migration("20250120100020_inityay")]
-    partial class inityay
+    [Migration("20250127155645_inast")]
+    partial class inast
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -207,6 +207,9 @@ namespace Toilet_Clicker.Data.Migrations
                     b.Property<Guid>("PlayerProfileID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("ProfileType")
+                        .HasColumnType("bit");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -326,6 +329,9 @@ namespace Toilet_Clicker.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal>("ClickCount")
+                        .HasColumnType("decimal(20,0)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -344,6 +350,9 @@ namespace Toilet_Clicker.Data.Migrations
                         .HasColumnType("decimal(20,0)");
 
                     b.Property<decimal>("Score")
+                        .HasColumnType("decimal(20,0)");
+
+                    b.Property<decimal>("ScorePerClick")
                         .HasColumnType("decimal(20,0)");
 
                     b.Property<decimal>("Speed")

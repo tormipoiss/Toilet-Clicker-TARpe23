@@ -45,9 +45,8 @@ namespace Toilet_Clicker.Controllers
 					ToiletName = x.ToiletName,
 					Score = x.Score,
 					Power = x.Power,
-					PowerPrice = x.PowerPrice,
 					Speed = x.Speed,
-					SpeedPrice = x.SpeedPrice,
+					ClickCount = x.ClickCount,
 					Location = x.Location,
 					ToiletWasBorn = x.ToiletWasBorn,
 				});
@@ -73,10 +72,12 @@ namespace Toilet_Clicker.Controllers
                 {
                     ToiletName = vm.ToiletName,
                     Power = 1,
+                    ScorePerClick = 1,
                     PowerPrice = 1,
                     Speed = 1,
                     SpeedPrice = 1,
                     Score = 0,
+                    ClickCount = 0,
                     LocationID = vm.LocationID,
                     ToiletWasBorn = vm.ToiletWasBorn,
                     CreatedAt = DateTime.Now,
@@ -128,10 +129,12 @@ namespace Toilet_Clicker.Controllers
 			vm.ID = toilet.ID;
 			vm.ToiletName = toilet.ToiletName;
 			vm.Power = toilet.Power;
+			vm.ScorePerClick = toilet.ScorePerClick;
 			vm.PowerPrice = toilet.PowerPrice;
 			vm.Speed = toilet.Speed;
 			vm.SpeedPrice = toilet.SpeedPrice;
 			vm.Score = toilet.Score;
+			vm.ClickCount = toilet.ClickCount;
 			vm.Location = toilet.Location;
 			vm.ToiletWasBorn = toilet.ToiletWasBorn;
 			vm.Image.AddRange(images);
@@ -164,10 +167,12 @@ namespace Toilet_Clicker.Controllers
 			vm.ID = toilet.ID;
 			vm.ToiletName = toilet.ToiletName;
 			vm.Power = toilet.Power;
+			vm.ScorePerClick = toilet.ScorePerClick;
 			vm.PowerPrice = toilet.PowerPrice;
 			vm.Speed = toilet.Speed;
 			vm.SpeedPrice = toilet.SpeedPrice;
 			vm.Score = toilet.Score;
+			vm.ClickCount = toilet.ClickCount;
 			vm.Image.AddRange(images);
 
 			return View(vm);
@@ -191,33 +196,37 @@ namespace Toilet_Clicker.Controllers
 
 			if (toilet.Power <= 1)
 			{
-				toilet.Score++;
+				toilet.ScorePerClick = toilet.Power;
 			}
 			else
 			{
 				if (toilet.Power <= 10)
 				{
-					toilet.Score += toilet.Power * 2;
-				}
+					toilet.ScorePerClick = toilet.Power * 2;
+                }
 				else if (toilet.Power <= 20)
 				{
-					toilet.Score += toilet.Power * 3;
-				}
+                    toilet.ScorePerClick = toilet.Power * 3;
+                }
 				else if (toilet.Power <= 30)
 				{
-					toilet.Score += toilet.Power * 4;
-				}
+                    toilet.ScorePerClick = toilet.Power * 4;
+                }
 				else if (toilet.Power <= 40)
 				{
-					toilet.Score += toilet.Power * 6;
-				}
+                    toilet.ScorePerClick = toilet.Power * 6;
+                }
 				else
 				{
-					toilet.Score += toilet.Power * 8;
-				}
+                    toilet.ScorePerClick = toilet.Power * 8;
+                }
 			}
 
-			if (TempData["clickDb"] == null)
+            toilet.Score += toilet.ScorePerClick;
+
+			toilet.ClickCount++;
+
+            if (TempData["clickDb"] == null)
 			{
 				TempData["clickDb"] = JsonSerializer.Serialize(new List<List<string>>());
 
@@ -295,10 +304,12 @@ namespace Toilet_Clicker.Controllers
 				ID = (Guid)toilet.ID,
 				ToiletName = toilet.ToiletName,
 				Power = toilet.Power,
+				ScorePerClick = toilet.ScorePerClick,
 				PowerPrice = toilet.PowerPrice,
 				Speed = toilet.Speed,
 				SpeedPrice = toilet.SpeedPrice,
 				Score = toilet.Score,
+				ClickCount = toilet.ClickCount,
 				LocationID = toilet.LocationID,
 				ToiletWasBorn = toilet.ToiletWasBorn,
 				CreatedAt = toilet.CreatedAt
@@ -355,15 +366,45 @@ namespace Toilet_Clicker.Controllers
 				}
 			}
 
-			var dto = new ToiletDto()
+            if (toilet.Power <= 1)
+            {
+                toilet.ScorePerClick = toilet.Power;
+            }
+            else
+            {
+                if (toilet.Power <= 10)
+                {
+                    toilet.ScorePerClick = toilet.Power * 2;
+                }
+                else if (toilet.Power <= 20)
+                {
+                    toilet.ScorePerClick = toilet.Power * 3;
+                }
+                else if (toilet.Power <= 30)
+                {
+                    toilet.ScorePerClick = toilet.Power * 4;
+                }
+                else if (toilet.Power <= 40)
+                {
+                    toilet.ScorePerClick = toilet.Power * 6;
+                }
+                else
+                {
+                    toilet.ScorePerClick = toilet.Power * 8;
+                }
+            }
+
+            var dto = new ToiletDto()
 			{
 				ID = (Guid)toilet.ID,
 				ToiletName = toilet.ToiletName,
 				Power = toilet.Power,
+				ScorePerClick = toilet.ScorePerClick,
 				PowerPrice = toilet.PowerPrice,
 				Speed = toilet.Speed,
 				SpeedPrice = toilet.SpeedPrice,
 				Score = toilet.Score,
+				ClickCount = toilet.ClickCount,
 				LocationID = toilet.LocationID,
 				ToiletWasBorn = toilet.ToiletWasBorn,
 				CreatedAt = toilet.CreatedAt
@@ -425,10 +466,12 @@ namespace Toilet_Clicker.Controllers
 				ID = (Guid)toilet.ID,
 				ToiletName = toilet.ToiletName,
 				Power = toilet.Power,
+				ScorePerClick = toilet.ScorePerClick,
 				PowerPrice = toilet.PowerPrice,
 				Speed = toilet.Speed,
 				SpeedPrice = toilet.SpeedPrice,
 				Score = toilet.Score,
+				ClickCount = toilet.ClickCount,
 				LocationID = toilet.LocationID,
 				ToiletWasBorn = toilet.ToiletWasBorn,
 				CreatedAt = toilet.CreatedAt
@@ -467,10 +510,12 @@ namespace Toilet_Clicker.Controllers
 			vm.ID = toilet.ID;
 			vm.ToiletName = toilet.ToiletName;
 			vm.Power = toilet.Power;
+			vm.ScorePerClick = toilet.ScorePerClick;
 			vm.PowerPrice = toilet.PowerPrice;
 			vm.Speed = toilet.Speed;
 			vm.SpeedPrice = toilet.SpeedPrice;
 			vm.Score = toilet.Score;
+			vm.ClickCount = toilet.ClickCount;
 			vm.LocationID = toilet.LocationID;
 			vm.ToiletWasBorn = toilet.ToiletWasBorn;
 			vm.CreatedAt = toilet.CreatedAt;
@@ -497,10 +542,12 @@ namespace Toilet_Clicker.Controllers
 				ID = (Guid)vm.ID,
 				ToiletName = vm.ToiletName,
 				Power = existingToilet.Power,
+				ScorePerClick = existingToilet.ScorePerClick,
 				PowerPrice = existingToilet.PowerPrice,
 				Speed = existingToilet.Speed,
 				SpeedPrice = existingToilet.SpeedPrice,
 				Score = existingToilet.Score,
+				ClickCount = existingToilet.ClickCount,
 				LocationID = vm.LocationID,
 				ToiletWasBorn = existingToilet.ToiletWasBorn,
 				CreatedAt = existingToilet.CreatedAt,
@@ -545,10 +592,12 @@ namespace Toilet_Clicker.Controllers
 			vm.ID = toilet.ID;
 			vm.ToiletName = toilet.ToiletName;
 			vm.Power = toilet.Power;
+			vm.ScorePerClick = toilet.ScorePerClick;
 			vm.PowerPrice = toilet.PowerPrice;
 			vm.Speed = toilet.Speed;
 			vm.SpeedPrice = toilet.SpeedPrice;
 			vm.Score = toilet.Score;
+			vm.ClickCount = toilet.ClickCount;
 			vm.Location = toilet.Location;
 			vm.ToiletWasBorn = toilet.ToiletWasBorn;
 			vm.CreatedAt = toilet.CreatedAt;

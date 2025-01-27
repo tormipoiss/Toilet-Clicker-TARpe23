@@ -16,12 +16,14 @@ namespace Toilet_Clicker.Core.Dto
 		[Key]
 		public Guid ID { get; set; }
 		public string ToiletName { get; set; }
-		public ulong Power { get; set; }
-		public ulong PowerPrice { get; set; }
-		public ulong Speed { get; set; }
-		public ulong SpeedPrice { get; set; }
-		public ulong Score { get; set; }
-		[ForeignKey(nameof(Location.ID))]
+        public ulong Power { get; set; }
+        public ulong ScorePerClick { get; set; }
+        public ulong PowerPrice { get; set; }
+        public ulong Speed { get; set; }
+        public ulong SpeedPrice { get; set; }
+        public ulong Score { get; set; }
+        public ulong ClickCount { get; set; }
+        [ForeignKey(nameof(Location.ID))]
 		public Guid? LocationID { get; set; }
 		public Location? Location { get; set; }
 		public DateTime ToiletWasBorn { get; set; }

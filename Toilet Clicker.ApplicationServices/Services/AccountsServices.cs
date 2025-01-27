@@ -41,7 +41,7 @@ namespace Toilet_Clicker.ApplicationServices.Services
                 UserName = dto.UserName,
                 Email = dto.Email,
                 City = dto.City,
-                PlayerProfileID = Guid.NewGuid(),
+                ProfileType = false
             };
             var result = await _userManager.CreateAsync(user, dto.Password);
             if (result.Succeeded)
