@@ -121,5 +121,41 @@ namespace Toilet_Clicker.ApplicationServices.Services
 
             return result;
         }
-	}
+
+        public async Task<ToiletOwnership> CreateRandom(Toilet sourceToilet)
+        {
+            ToiletOwnership toilet = new ToiletOwnership();
+
+            // set by service
+            toilet.ID = Guid.NewGuid();
+            toilet.Power = 1;
+            toilet.ScorePerClick = 1;
+            toilet.PowerPrice = 1;
+            toilet.Speed = 1;
+            toilet.SpeedPrice = 1;
+            toilet.Score = 0;
+            toilet.ClickCount = 0;
+            if (sourceToilet.ToiletWasBorn == DateTime.MinValue)
+            {
+                toilet.ToiletWasBorn = DateTime.Now;
+            }
+            else
+            {
+                toilet.ToiletWasBorn = sourceToilet.ToiletWasBorn;
+            }
+
+            //set by user
+            toilet.ToiletName = sourceToilet.ToiletName;
+            toilet.LocationID = sourceToilet.LocationID;
+            toilet.Location = sourceToilet.Location;
+
+            //set for db
+            toilet.CreatedAt = toilet.ToiletWasBorn;
+
+            await _context.ToiletOwnerships.AddAsync(toilet);
+            await _context.SaveChangesAsync();
+
+            return toilet;
+        }
+    }
 }

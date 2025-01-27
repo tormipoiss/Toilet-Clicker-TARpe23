@@ -643,9 +643,11 @@ namespace Toilet_Clicker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateRandomToiletOwnership(ToiletOwnershipFromStoryViewModel vm)
         {
-			int RNG = new Random().Next(1, _context.Toilets.Count());
+            // create random int based on how many toilets are in the database
+            int RNG = new Random().Next(1, _context.Toilets.Count());
 
-			var sourceToilet = _context.Toilets.OrderByDescending(x => x.ToiletName).Take(RNG);
+            //find the source toilet, based on random integer
+            var sourceToilet = _context.Toilets.OrderByDescending(x => x.ToiletName).Take(RNG);
 
             var dto = new ToiletOwnershipDto()
             {
@@ -653,6 +655,7 @@ namespace Toilet_Clicker.Controllers
                 Power = 1,
                 Speed = 1,
                 Score = 0,
+				ClickCount = 0,
                 ToiletWasBorn = vm.AddedToilet.ToiletWasBorn,
                 OwnershipCreatedAt = DateTime.Now,
                 OwnershipUpdatedAt = DateTime.Now,
@@ -676,6 +679,44 @@ namespace Toilet_Clicker.Controllers
             }
 
             return RedirectToAction("Index", vm);
+        }
+
+        [ValidateAntiForgeryToken]
+        public async Task<ToiletOwnership> NewRandomToiletOwnership(ToiletOwnership newOwnership)
+        {
+            // create random int based on how many titans are in the database
+            int RNG = new Random().Next(1, _context.Toilets.Count());
+
+            //find the source titan, based on random integer
+            var sourceToilet = _context.Toilets.OrderByDescending(x => x.ToiletName).Take(RNG);
+
+            var randomtoilet = new ToiletOwnership()
+            {
+                ToiletName = newOwnership.ToiletName,
+                Power = 1,
+                Speed = 1,
+                Score = 0,
+                ClickCount = 0,
+                ToiletWasBorn = newOwnership.ToiletWasBorn,
+                OwnershipCreatedAt = DateTime.Now,
+                OwnershipUpdatedAt = DateTime.Now,
+
+				//Files = newOwnership.Files,
+				//Image = newOwnership.Image
+				//.Select(x => new FileToDatabase
+				//{
+				//    ID = x.ImageID,
+				//    ImageData = x.ImageData,
+				//    ImageTitle = x.ImageTitle,
+				//    TitanID = x.TitanID,
+				//}).ToArray()
+			};
+            await _toiletsServices.CreateRandom(randomtoilet);
+
+            //var result = await _storiesServices.Create(dto);
+            //STUB, needs storiesservices, a story to utilise, storiescontroller to function
+
+            return randomtoilet;
         }
     }
 }

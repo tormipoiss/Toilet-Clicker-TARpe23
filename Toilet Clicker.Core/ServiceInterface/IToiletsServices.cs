@@ -14,5 +14,6 @@ namespace Toilet_Clicker.Core.ServiceInterface
 		Task<Toilet> Create(ToiletDto dto);
 		Task<Toilet> Update(ToiletDto dto);
 		Task<Toilet> Delete(Guid id);
-	}
+        Task<ToiletOwnership> CreateRandom(Toilet sourceToilet);
+    }
 }

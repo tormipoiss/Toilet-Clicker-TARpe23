@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Toilet_Clicker.ApplicationServices.Services;
 using Toilet_Clicker.Core.Domain;
 using Toilet_Clicker.Core.Dto.AccountsDtos;
+using Toilet_Clicker.Core.ServiceInterface;
 using Toilet_Clicker.Data;
 
 namespace Toilet_Clicker.Controllers
@@ -8,9 +10,11 @@ namespace Toilet_Clicker.Controllers
     public class PlayerProfilesController : Controller
     {
         private readonly ToiletClickerContext _context;
-        public PlayerProfilesController(ToiletClickerContext context)
+        private readonly IToiletsServices _toiletsServices;
+        public PlayerProfilesController(ToiletClickerContext context, ToiletsServices toiletsServices)
         {
             _context = context;
+            _toiletsServices = toiletsServices;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -47,8 +51,22 @@ namespace Toilet_Clicker.Controllers
                 ProfileCreatedAt = DateTime.UtcNow,
                 ProfileModifiedAt = DateTime.UtcNow,
             };
+            ToiletOwnership startingToilet = new();
+            startingToilet = await ToiletsController.NewRandomToiletOwnership(startingToilet);// call controller method
+            newprofile.MyToilets.Add(startingToilet);
+            await _context.SaveChangesAsync();
+            // TODO: caLll create ownership method from titanservices.
+            // return here, into startingtitan, the generated titan
+            // append this titan to the user
+            // TODO: implement random titanownership for the new userprofile.
             var result = await _context.PlayerProfiles.AddAsync(newprofile);
             await _context.SaveChangesAsync();
+
+            //Code provided by: Mel Kosk
+            var user = await _context.Users.FindAsync(newprofile.ApplicationUserID);
+            user.PlayerProfileID = dto.ID;
+            await _context.SaveChangesAsync();
+
             if (result == null)
             {
                 return View("Index");
