@@ -1,1 +1,5 @@
 .vs
+*.cache
+*.cache
+/Toilet Clicker.Core/obj
+/Toilet Clicker.Core/obj
